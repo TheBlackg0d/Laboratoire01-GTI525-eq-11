@@ -1,0 +1,120 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 solid transparent;
+}
+
+body {
+  padding: 0;
+  height: 100vh;
+}
+
+.logo-project-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10rem;
+}
+
+.logo-image {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.links > a {
+  text-decoration: none;
+  color: black;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.project-name {
+  font-size: 2.5rem;
+}
+
+.point-interet {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  background-color: antiquewhite;
+  padding: 1.5rem;
+}
+
+.down-arrow {
+  padding-left: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  fill: black;
+}
+.account-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  fill: black;
+}
+
+main {
+  height: 100%;
+}
+
+.landing-page-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 80%;
+  background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url("/image/img_landing_page_2.jpg");
+
+  background-repeat: no-repeat;
+  background-size: 130%;
+  background-position: center center, -30rem -50rem;
+}
+
+.btn {
+  width: 20rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  font-size: 2rem;
+  border-radius: 1.5rem;
+}
+.btn-more {
+  margin-left: 1rem;
+}
+
+.btn-wrapper {
+  margin-top: 12rem;
+  width: 45%;
+}
+
+.heading-1 {
+  font-size: 8rem;
+  max-width: 50%;
+  color: white;
+}

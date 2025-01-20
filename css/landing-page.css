@@ -15,6 +15,7 @@ html {
 body {
   padding: 0;
   height: 100vh;
+  font-family: "Lato", sans-serif;
 }
 
 .logo-project-name {
@@ -39,7 +40,7 @@ body {
 
 .links > a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .links {
@@ -58,20 +59,21 @@ body {
 }
 
 .navbar {
-  background-color: antiquewhite;
+  background-color: #46be72;
   padding: 1.5rem;
+  color: white;
 }
 
 .down-arrow {
   padding-left: 0.4rem;
   width: 2rem;
   height: 2rem;
-  fill: black;
+  fill: white;
 }
 .account-logo {
-  width: 3.5rem;
-  height: 3.5rem;
-  fill: black;
+  width: 4.5rem;
+  height: 4.5rem;
+  fill: white;
 }
 
 main {
@@ -84,17 +86,17 @@ main {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 80%;
+  height: 85%;
   background-image: radial-gradient(
       circle,
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0) 100%
     ),
-    url("/image/img_landing_page_2.jpg");
+    url("/image/img_landing_page_1.jpg");
 
   background-repeat: no-repeat;
-  background-size: 130%;
-  background-position: center center, -30rem -50rem;
+  background-size: 120%;
+  background-position: center center, -10rem -10rem;
 }
 
 .btn {
@@ -109,10 +111,23 @@ main {
 }
 
 .btn-wrapper {
-  margin-top: 12rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-right: 10rem;
   width: 45%;
 }
 
+.btn-more {
+  margin-left: 5rem;
+  color: white;
+  background-color: #46be72;
+}
+.btn-equipe {
+  color: white;
+  background-color: transparent;
+  border: #46be72 0.3rem solid;
+}
 .heading-1 {
   font-size: 8rem;
   max-width: 50%;

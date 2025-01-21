@@ -61,7 +61,7 @@ body {
 
 .navbar {
   background-color: #46be72;
-  padding: 1rem;
+
   color: white;
 }
 
@@ -159,11 +159,19 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 8.1%;
+  height: 8.6%;
   margin: 0;
-  background-color: #46be72;
+  background-color: #3cae65;
 }
 .copyright {
   color: white;
   font-size: 2rem;
+}
+
+.nav-links {
+  padding: 2rem;
+  height: 100%;
+}
+.nav-links:hover {
+  background-color: #369b5b;
 }

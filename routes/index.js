@@ -24,6 +24,7 @@ router.get('/statistique', async function(req, res, next) {
       header: true
     });
     
+    console.log(data.data[0]);
     res.render('statistique', {
        title: 'Statistiques', 
        listCompteurs: data.data

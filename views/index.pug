@@ -1,5 +1,11 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+html
+  include ./commons/header.pug
+  include ./commons/navbar.pug
+  <link rel="stylesheet" href="/stylesheets/landing-page.css" />
+  body 
+    section.landing-page-section
+      h1.heading-1 Pedalez vers l'avenir: Itineraires et Stats Velo!
+      .btn-wrapper
+        a(href="/equipe"): button.btn-equipe.btn L'equipe
+        a(href="/a-propos"): button.btn-more.btn En savoir plus
+    include ./commons/footer.pug

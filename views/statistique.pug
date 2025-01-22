@@ -1,0 +1,75 @@
+html
+  head
+    include ./commons/header.pug
+    include ./commons/navbar.pug
+    <link rel="stylesheet" href="/stylesheets/statistiques-page.css" />
+    link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
+  body
+    .d-flex.p-2.mainSection
+        .p-2.filters
+            h1 #{title}
+            br
+            p.textDescriptif Le réseau cyclable est composé de X pistes et voies cyclables.
+            form(action="")
+                .mb-3.mt-3 
+                    label(for="date") Compteurs implantés à partir de:
+                    p
+                    input(
+                        type="date", id="date", name="date" class="form-control"
+                        )
+                    p 
+                    label(for="searchCompteur") Recherche de compteurs:
+                    .p-2
+                        .flex-row
+                            input(
+                            type="text", id="searchCompteur", name="searchCompteur", class="form-control")
+                            button( class="btnSearch" onclick="alert('allo')"): img(
+                                src="/images/search-icon.png",         alt="search-icon" class="search-icon")
+                     
+        .p-2
+            .flex-column
+                .container
+                    .d-inline-flex.p-2
+                        .btn.btn-outline-primary Liste des capteurs
+                        .btn.btn-outline-primary Carte
+                .container.table-responsive
+                    table.table.table-hover#myTable
+                        thead
+                            tr
+                                th Identifiant
+                                th Nom
+                                th Status
+                                th Année d'implantation
+                        tbody
+
+                            each compteur in listCompteurs
+                                -var id = compteur.ID
+                                -var nom = compteur.Nom
+                                -var status = compteur.Statut
+                                -var annee_implante = compteur.Annee_implante
+                                tr
+                                    td #{id}
+                                    td #{nom}
+                                    td #{status}
+                                    td #{annee_implante}
+
+
+    include ./commons/footer.pug
+    
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js")
+    script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
+    script. 
+        // Initialize DataTable with Multi-column Ordering
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+            order: [], // Default no ordering
+            columnDefs: [
+                { targets: '_all', orderable: true } // Allow multi-column ordering
+            ],
+            paging: true,
+            searching: true,
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/French.json" // French translation (optional)
+            }
+            });
+        });

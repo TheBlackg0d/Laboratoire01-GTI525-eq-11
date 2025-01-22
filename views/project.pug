@@ -1,0 +1,25 @@
+html(lang="fr")
+    head
+        include ./commons/header.pug
+        include ./commons/navbar.pug
+        title Le Projet - Mobilité Urbaine
+        link(rel="stylesheet" href="/stylesheets/project.css")
+    body
+        main
+            section#projet
+                h1 Le Projet
+                img(src="/images/velo.png" alt="Image d'un vélo urbain")
+                p
+                    | La mobilité durable en milieu urbain est au cœur de nos préoccupations.
+                    | Ce projet de laboratoire vise à développer une application web qui offre
+                    | une visualisation enrichie du réseau cyclable de la ville de Montréal.
+                    | L’application permettra aux utilisateurs de consulter les itinéraires
+                    | cyclables, les statistiques en temps réel des passages de vélos via des
+                    | capteurs, ainsi que des informations sur les points d’intérêt pertinents
+                    | pour les cyclistes tels que les stations de réparation, les fontaines d’eau,
+                    | et bien plus encore. Grâce à des fonctionnalités supplémentaires comme
+                    | l’affichage de graphiques et de données historiques, l’application offrira
+                    | une expérience complète et intuitive pour les passionnés de vélo, contribuant
+                    | à une mobilité urbaine plus durable et accessible.
+
+        include ./commons/footer.pug

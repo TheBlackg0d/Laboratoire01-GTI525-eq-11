@@ -1,0 +1,50 @@
+.landing-page-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/img_landing_page_1.jpg");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center, -10rem -10rem;
+
+  flex-grow: 1; /* Take up the remaining space */
+}
+
+.btn {
+  width: 20rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  font-size: 2rem;
+  border-radius: 1.5rem;
+}
+.btn-more {
+  margin-left: 1rem;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-right: 10rem;
+  width: 45%;
+}
+
+.btn-more {
+  margin-left: 5rem;
+  color: white;
+  background-color: #46be72;
+}
+.btn-equipe {
+  color: white;
+  background-color: transparent;
+  border: #46be72 0.3rem solid;
+}
+.heading-1 {
+  font-size: 8rem;
+  max-width: 50%;
+  color: white;
+}

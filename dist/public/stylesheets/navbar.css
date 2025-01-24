@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 solid transparent;
+}
+
+body {
+  padding: 0;
+  height: 100%;
+  font-family: "Lato", sans-serif;
+}
+
+.logo-project-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10rem;
+}
+
+.logo-image {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.links > a {
+  text-decoration: none;
+  color: white;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.project-name {
+  font-size: 2.5rem;
+}
+
+.point-interet {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  background-color: #46be72;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.down-arrow {
+  padding-left: 0.4rem;
+  width: 2rem;
+  height: 2rem;
+  fill: white;
+}
+
+.account-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  align-self: flex-end;
+  fill: white;
+}
+
+.nav-links {
+    padding: 2rem;
+    height: 100%;
+  }
+  .nav-links:hover {
+    background-color: #369b5b;
+  }
+  

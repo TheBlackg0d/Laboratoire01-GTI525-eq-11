@@ -1,0 +1,38 @@
+.instagram-logo {
+    width: 4rem;
+    height: 4rem;
+    fill: #f6f6f6;
+  }
+  
+  .facebook-logo {
+    width: 4rem;
+    height: 4rem;
+    fill: #f6f6f6;
+  }
+  
+  .twitter-logo {
+    width: 4rem;
+    height: 4rem;
+    fill: #f6f6f6;
+  }
+  
+  footer {
+    display: flex;
+    padding: 4rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8.6%;
+    margin: 0;
+    background-color: #3cae65;
+    margin-top: auto;
+    justify-content: space-between;
+    /*justify-self: flex-end;*/
+    position: sticky;
+    bottom: 0;
+    /*z-index: 1000; !* Ensure it stays above other content *!*/
+  }
+  .copyright {
+    color: white;
+    font-size: 2rem;
+  }

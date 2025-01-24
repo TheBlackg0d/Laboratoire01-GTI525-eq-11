@@ -1,0 +1,68 @@
+/* Assurez-vous que le conteneur principal prend toute la hauteur de la page */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+.btn.btn-outline-primary {
+    margin-left: 20px;
+    width: 120px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* La loupe */
+.flex-row { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-icon {
+    height: 25px;
+    background-color: #46be72;
+    margin-left: 5px;
+    border-radius: 55%;
+}
+
+.btnSearch {
+    background-color: white;
+}
+
+.filters {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.textDescriptif {
+    font-size: 1.6rem;
+    max-width: 70%;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.form-control {
+    font-size: 1.6rem;
+    width: 60%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+.table {
+    flex-grow: 2;
+    overflow-y: auto;
+    overflow-x: auto;
+  }

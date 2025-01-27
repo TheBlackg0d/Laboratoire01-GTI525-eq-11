@@ -1,0 +1,63 @@
+html  
+  head
+    include ./commons/header.pug
+    include ./commons/navbar.pug
+    <link rel="stylesheet" href="/stylesheets/pointInteret-page.css" />
+    link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
+  body
+    main 
+      section
+        h1.heading-point-interet Points d'intérêt
+        p.sub-heading-point-interet Le site propose beaucoup de lieu d'interet dans le grand montreal qui pourrait etre utile pour les amateurs de velo
+        h4.heading-point-interet-2 Territoires: 
+        img(src="/images/google-map.webp", alt="").img-google-map
+        .map-point-interet
+          form(action="").row
+            .col-6
+              label(for="arrondissement") Arrondissement
+            .col-6
+              select(name="arrondissement").form-select.select-1
+                option(value="Tous") Tous
+                each arrondissement in uniqueArrondissements
+                  -var a = arrondissement
+                  option(value=a) #{a}   
+      section
+        table.table.table-hover#myTable
+          thead
+            tr
+              th Identifiant
+              th Arrondissement
+              th NomLieu
+              th Proximité jeux repère
+          tbody
+      
+            each fontaine in listFontaines
+              -var id = fontaine.ID
+              -var arrondissement = fontaine.Arrondissement
+              -var nomLieu = fontaine.Nom_parc_lieu
+              -var proximite = fontaine.Proximité_jeux_repère
+              tr
+                td #{id}
+                td #{arrondissement}
+                td #{nomLieu}
+                td #{proximite}
+    include ./commons/footer.pug
+    
+script(src="https://code.jquery.com/jquery-3.7.1.min.js")
+script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
+script. 
+    // Initialize DataTable with Multi-column Ordering
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+        order: [], // Default no ordering
+        columnDefs: [
+            { targets: '_all', orderable: true } // Allow multi-column ordering
+        ],
+        paging: true,
+        lengthMenu: [20, 50, 75, 100],
+        searching: true,
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/French.json" // French translation (optional)
+        }
+        });
+    });

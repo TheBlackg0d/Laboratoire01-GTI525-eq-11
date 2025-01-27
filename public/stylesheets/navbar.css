@@ -41,7 +41,7 @@ body {
   font-size: 2rem;
 }
 
-.links > a {
+a {
   text-decoration: none;
   color: white;
 }
@@ -84,10 +84,9 @@ body {
 }
 
 .nav-links {
-    padding: 2rem;
-    height: 100%;
-  }
-  .nav-links:hover {
-    background-color: #369b5b;
-  }
-  
+  padding: 2rem;
+  height: 100%;
+}
+.nav-links:hover {
+  background-color: #369b5b;
+}

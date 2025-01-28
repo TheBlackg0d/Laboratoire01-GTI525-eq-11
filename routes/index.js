@@ -43,11 +43,7 @@ router.get("/pointInteret", async (req, res) => {
 
     console.log(data.data[0]);
     const uniqueArrondissements = [
-      ...new Set(data.data.map((item) => {
-        let i = {};
-        i.Arrondissement = item.Arrondissement
-        i.
-      })),
+      ...new Set(data.data.map((item) => item.Arrondissement)),
     ]; // [ 'A', 'B']
     res.render("pointInteret", {
       title: "Point d'interet",

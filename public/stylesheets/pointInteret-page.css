@@ -25,9 +25,17 @@ section {
 .select-1 {
   font-size: inherit;
 }
+
+.lieu-container {
+  margin-top: 4rem;
+}
 .img-google-map {
   width: 50rem;
   height: 30rem;
   object-fit: cover;
   margin-bottom: 4rem;
+}
+
+.dataTables_filter {
+  display: none;
 }

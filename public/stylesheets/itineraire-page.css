@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionGauche {
+    justify-content: space-between;
+    padding: 25px;
+    overflow-wrap: break-word;
+}
+
+.sectionDroite {
+    padding: 20px;
+    align-items: end;
+}
+
+.titre, .description, .btn-group-horizontal, .typeDeVoie {
+    padding-bottom: 20px;
+    text-wrap: auto;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+.btn-check {
+    font-size: 1.9em;
+}
+
+#debut, #fin {
+    height: 35px;
+    width: 150px;
+    align-self: center;
+}
+
+.form-check-input {
+    height: 15px;
+    width: 15px;
+}
+
+.form-check-label {
+    padding-left: 10px;
+    font-size: 1.2em;
+}
+
+iframe {
+    width: 700px;
+}
+
+
+
+

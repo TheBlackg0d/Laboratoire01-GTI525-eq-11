@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "views", "public", "config"],
+  "ext": "ts,json,pug,css",
+  "ignore": ["node_modules"],
+  "exec": "npm run build && node dist/index.js"
+}

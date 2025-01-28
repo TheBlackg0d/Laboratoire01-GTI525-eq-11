@@ -48,7 +48,13 @@ class App {
                 title: 'Statistique',
                 listCompteurs: compteurData
             });
-        })
+        });
+
+        router.get('/itineraire', (req, res) => {
+            res.render('itineraire', {
+                title: 'Pistes et voies cyclables'
+            });
+        });
 
         // Team Page
         router.get('/equipe', (req, res) => {
@@ -61,7 +67,7 @@ class App {
             res.render('project', {
                 title: 'Le Projet - Mobilité Urbaine',
             })
-        })
+        });
 
         this.expressApp.use('/', router);
         this.expressApp.use('/statistique', statRouter.router); // Pour tout autre operations avec la page statistique

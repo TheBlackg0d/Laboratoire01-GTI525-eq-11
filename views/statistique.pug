@@ -1,9 +1,9 @@
-<!doctype html>
+doctype html
 html
   head
     include ./commons/header.pug
     include ./commons/navbar.pug
-    <link rel="stylesheet" href="/stylesheets/statistiques-page.css" />
+    link(rel="stylesheet" href="/stylesheets/statistiques-page.css")
     link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
   body
     .d-flex.p-2.mainSection
@@ -12,11 +12,12 @@ html
             br
             p.textDescriptif Le réseau cyclable est composé de X pistes et voies cyclables.
             form(action="")
-                .mb-3.mt-3 
+                .mb-3.mt-3
                     label(for="date") Compteurs implantés à partir de:
                     p
                     input(
                         type="date", id="date", name="date" class="form-control"
+                        placeholder="Description..."
                         )
                     p 
                     label(for="searchCompteur") Recherche de compteurs:

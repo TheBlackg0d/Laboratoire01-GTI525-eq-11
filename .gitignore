@@ -1,4 +1,9 @@
 node_modules
 .idea
 dist
+**node_modules
 /node_modules
+/node_modules/bootstrap
+/node_modules/@popperjs
+/node_modules/@popperjs/core/dist/cjs
+

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "build": "tsc -b --verbose && shx --verbose cp -ru public dist/",
+    "bsw": "npm run build && open http://localhost:3000  && npm run start:watch",
     "start:watch": "nodemon",
     "watch": "jest --watch --coverage",
     "test": "jest --colors --coverage"

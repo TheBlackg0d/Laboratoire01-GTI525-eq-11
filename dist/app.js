@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const statistiqueRouter_1 = require("./routes/statistiqueRouter");
 const morgan_1 = __importDefault(require("morgan"));
 const express_flash_plus_1 = __importDefault(require("express-flash-plus"));
+const pointInteretRouter_1 = require("./routes/pointInteretRouter");
 class App {
     constructor() {
         this.expressApp = (0, express_1.default)();
@@ -23,12 +24,12 @@ class App {
         this.middleware();
         this.routes(); // For routes implementation
         // Pug Engine
-        this.expressApp.set('view engine', 'pug');
+        this.expressApp.set("view engine", "pug");
         // Static files
-        this.expressApp.use(express_1.default.static(__dirname + '/public'));
+        this.expressApp.use(express_1.default.static(__dirname + "/public"));
     }
     middleware() {
-        this.expressApp.use((0, morgan_1.default)('dev'));
+        this.expressApp.use((0, morgan_1.default)("dev"));
         this.expressApp.use(express_1.default.json());
         this.expressApp.use(express_1.default.urlencoded({ extended: false }));
         this.expressApp.use((0, express_flash_plus_1.default)());
@@ -36,29 +37,30 @@ class App {
     routes() {
         const router = express_1.default.Router();
         // Home Page
-        router.get('/', (req, res) => {
-            res.render('index', { title: 'Home' });
+        router.get("/", (req, res) => {
+            res.render("index", { title: "Home" });
         });
-        router.get('/statistique', (req, res) => __awaiter(this, void 0, void 0, function* () {
+        router.get("/statistique", (req, res) => __awaiter(this, void 0, void 0, function* () {
             let compteurData = yield statistiqueRouter_1.statRouter.controllerStats.getStatData();
-            res.render('statistique', {
-                title: 'Statistique',
-                listCompteurs: compteurData
+            res.render("statistique", {
+                title: "Statistique",
+                listCompteurs: compteurData,
             });
         }));
         // Team Page
-        router.get('/equipe', (req, res) => {
-            res.render('equipe', {
-                title: 'Equipe 11',
+        router.get("/equipe", (req, res) => {
+            res.render("equipe", {
+                title: "Equipe 11",
             });
         });
-        router.get('/a-propos', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            res.render('project', {
-                title: 'Le Projet - Mobilité Urbaine',
+        router.get("/a-propos", (req, res) => __awaiter(this, void 0, void 0, function* () {
+            res.render("project", {
+                title: "Le Projet - Mobilité Urbaine",
             });
         }));
-        this.expressApp.use('/', router);
-        this.expressApp.use('/statistique', statistiqueRouter_1.statRouter.router); // Pour tout autre operations avec la page statistique
+        this.expressApp.use("/", router);
+        this.expressApp.use("/statistique", statistiqueRouter_1.statRouter.router); // Pour tout autre operations avec la page statistique
+        this.expressApp.use("/pointInteret", pointInteretRouter_1.PIRouter.router);
     }
 }
 exports.default = new App().expressApp;

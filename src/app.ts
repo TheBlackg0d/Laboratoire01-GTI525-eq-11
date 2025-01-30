@@ -2,6 +2,7 @@ import express from 'express'
 import {statRouter} from "./routes/statistiqueRouter";
 import logger from 'morgan';
 import flash from 'express-flash-plus';
+import {PIRouter} from "./routes/pointInteretRouter";
 
 class App {
 
@@ -69,8 +70,9 @@ class App {
             })
         });
 
-        this.expressApp.use('/', router);
-        this.expressApp.use('/statistique', statRouter.router); // Pour tout autre operations avec la page statistique
+        this.expressApp.use("/", router);
+        this.expressApp.use("/statistique", statRouter.router); // Pour tout autre operations avec la page statistique
+        this.expressApp.use("/pointInteret", PIRouter.router);
     }
 
 }

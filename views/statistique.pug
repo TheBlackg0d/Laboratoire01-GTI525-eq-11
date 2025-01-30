@@ -54,8 +54,6 @@ html
                                     td #{nom}
                                     td #{status}
                                     td #{annee_implante}
-
-
     include ./commons/footer.pug
     
     script(src="https://code.jquery.com/jquery-3.7.1.min.js")
@@ -68,9 +66,10 @@ html
             columnDefs: [
                 { targets: '_all', orderable: true } // Allow multi-column ordering
             ],
-            paging: true,
-            searching: true,
-            language: {
+                paging: true,
+                lengthMenu: [20, 50, 75, 100],
+                searching: true,
+                language: {
                 url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/French.json" // French translation (optional)
             }
             });

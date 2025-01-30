@@ -1,0 +1,43 @@
+main {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  padding: 4rem;
+  justify-content: space-around;
+}
+section {
+  margin: 0;
+  min-height: 85%;
+}
+.heading-point-interet {
+  font-size: 4rem;
+}
+.heading-point-interet-2 {
+  font-size: 3rem;
+  margin-top: 1rem;
+}
+.sub-heading-point-interet {
+  font-size: 2rem;
+  max-width: 40rem;
+}
+.map-point-interet {
+  font-size: 1.8rem;
+}
+
+.select-1 {
+  font-size: inherit;
+}
+
+.lieu-container {
+  margin-top: 4rem;
+}
+.img-google-map {
+  width: 50rem;
+  height: 30rem;
+  object-fit: cover;
+  margin-bottom: 4rem;
+}
+
+/*.dataTables_filter {*/
+/*  display: none;*/
+/*}*/

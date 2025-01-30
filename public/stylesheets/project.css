@@ -23,7 +23,7 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-img {
+.imgProjet {
     display: block;
     max-width: 100%;
     height: auto;
@@ -32,7 +32,7 @@ img {
     transition: transform 0.3s ease;
 }
 /* Add subtle hover effect */
-img:hover {
+.imgProjet:hover {
     transform: scale(1.01);
 }
 

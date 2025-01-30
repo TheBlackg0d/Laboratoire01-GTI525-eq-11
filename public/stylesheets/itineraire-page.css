@@ -1,8 +1,15 @@
 html, body {
+    display: flex;
     height: 100%;
     margin: 0;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+body {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .sectionGauche {
@@ -13,6 +20,7 @@ html, body {
 
 .sectionDroite {
     padding: 20px;
+    margin-top: 20px;
     align-items: end;
 }
 
@@ -47,6 +55,10 @@ p {
 
 iframe {
     width: 700px;
+    height: 700px;
+    min-height: 300px; /* Set a minimum height */
+    min-width: 300px;
+    border: none;
 }
 
 

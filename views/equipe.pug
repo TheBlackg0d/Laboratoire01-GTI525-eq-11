@@ -2,14 +2,14 @@ doctype html
 html(lang="fr")
     head
         include ./commons/header.pug
-        include ./commons/navbar.pug
         title Notre Équipe
         link(rel="stylesheet" href="/stylesheets/equipe.css")
     body
-        div.container
+        include ./commons/navbar.pug
+        .container
             h1 L'Équipe
-        div.flex-column
-            div.d-flex.flex-row
+        .flex-column
+            .d-flex.flex-row
                 .card
                     img(class="card-img-top" src="/images/avatar1.png")
                     .card-body
@@ -25,20 +25,5 @@ html(lang="fr")
                     .card-body
                         h4.card-title Franck Assan
                         h4.card-title Dev
-        //main
-        //    section#equipe
-        //        h1 Notre Équipe
-        //        .team-container
-        //            .team-member
-        //                img(src="/images/avatar.png" alt="Photo de Alex")
-        //                h2 Alex
-        //                p Spécialiste en design et communication.
-        //            .team-member
-        //                img(src="/images/avatar.png" alt="Photo de Jamie")
-        //                h2 Jamie
-        //                p Développeur web et créateur de contenu.
-        //            .team-member
-        //                img(src="/images/avatar.png" alt="Photo de Sam")
-        //                h2 Sam
-        //                p Gestionnaire de projet et responsable logistique.
+
         include ./commons/footer.pug

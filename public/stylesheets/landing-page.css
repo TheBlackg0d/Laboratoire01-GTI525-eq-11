@@ -15,7 +15,8 @@
 }
 
 .btn {
-  width: 20rem;
+  width: 15rem;
+  height: auto;
   padding-bottom: 2rem;
   padding-top: 2rem;
   font-size: 2rem;
@@ -28,8 +29,9 @@
 .btn-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
-  margin-right: 10rem;
+  margin-top: 4rem;
+  margin-right: 5rem;
+  margin-bottom: 3rem;
   width: 45%;
 }
 
@@ -47,4 +49,8 @@
   font-size: 8rem;
   max-width: 50%;
   color: white;
+}
+
+body {
+  overflow-x: hidden;
 }

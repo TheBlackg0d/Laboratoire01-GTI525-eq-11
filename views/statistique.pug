@@ -2,10 +2,11 @@ doctype html
 html
   head
     include ./commons/header.pug
-    include ./commons/navbar.pug
+    //include
     link(rel="stylesheet" href="/stylesheets/statistiques-page.css")
     link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
   body
+    include ./commons/navbar.pug
     .d-flex.p-2.mainSection
         .p-2.filters
             h1 #{title}
@@ -26,34 +27,31 @@ html
                             input(
                             type="text", id="searchCompteur", name="searchCompteur", class="form-control")
                             button( class="btnSearch" onclick="alert('allo')"): img(
-                                src="/images/search-icon.png",         alt="search-icon" class="search-icon")
+                                src="/images/search-icon.png"  alt="search-icon" class="search-icon")
                      
-        .p-2
-            .flex-column
-                .container
-                    .d-inline-flex.p-2
-                        .btn.btn-outline-primary Liste des capteurs
-                        .btn.btn-outline-primary Carte
-                .container.table-responsive
-                    table.table.table-hover#myTable
-                        thead
-                            tr
-                                th Identifiant
-                                th Nom
-                                th Status
-                                th Année d'implantation
-                        tbody
+        .sectionTable
+            .containerButton
+                .btn.btn-outline-primary#btnCapteur Liste des capteurs
+                .btn.btn-outline-primary#btnCarte Carte
+            table.table.table-hover#myTable
+                thead
+                    tr
+                        th Identifiant
+                        th Nom
+                        th Status
+                        th Année d'implantation
+                tbody
 
-                            each compteur in listCompteurs
-                                -var id = compteur.ID
-                                -var nom = compteur.Nom
-                                -var status = compteur.Statut
-                                -var annee_implante = compteur.Annee_implante
-                                tr
-                                    td #{id}
-                                    td #{nom}
-                                    td #{status}
-                                    td #{annee_implante}
+                    each compteur in listCompteurs
+                        -var id = compteur.ID
+                        -var nom = compteur.Nom
+                        -var status = compteur.Statut
+                        -var annee_implante = compteur.Annee_implante
+                        tr
+                            td #{id}
+                            td #{nom}
+                            td #{status}
+                            td #{annee_implante}
     include ./commons/footer.pug
     
     script(src="https://code.jquery.com/jquery-3.7.1.min.js")

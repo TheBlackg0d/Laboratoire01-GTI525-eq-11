@@ -1,15 +1,16 @@
+doctype html
 html
     head
         include ./commons/header.pug
-        include ./commons/navbar.pug
-        <link rel="stylesheet" href="/stylesheets/pointInteret-page.css" />
+        link(rel="stylesheet" href="/stylesheets/pointInteret-page.css")
         link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
     body
+        include ./commons/navbar.pug
         main
-            section
+            .section1
                 h1.heading-point-interet Points d'intérêt
                 p.sub-heading-point-interet Le site propose beaucoup de lieu d'interet dans le grand montreal qui pourrait etre utile pour les amateurs de velo
-                h4.heading-point-interet-2 Territoires:
+                h3.heading-point-interet-2 Territoires:
                 img(src="/images/google-map.webp", alt="").img-google-map
                 .map-point-interet
                     form(action="")
@@ -28,7 +29,7 @@ html
                             .col-6
                                 select(name="typeDeLieu", id="TypeDeLieu").form-select.select-1
                                     option(value="Fontaine à boire") Fontaine à boire
-            section
+            .sectionTable
                 table.table.table-hover#myTable
                     thead
                         tr

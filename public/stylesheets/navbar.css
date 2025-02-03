@@ -2,7 +2,6 @@ nav {
   background-color: #46be72;
   color: white;
   width: 100%;
- ;
 }
 
 .navbar.navbar-expand-sm {
@@ -20,6 +19,7 @@ nav {
 .logo-image {
   height: 70px;
 }
+
 .nav-link {
   color: white;
 }
@@ -47,7 +47,7 @@ nav {
 
 .navbar-nav.account {
   display: flex;
-  margin-left: auto;
+  margin-left: 10%;
 }
 
 .navbar-nav.account li a img {
@@ -55,7 +55,4 @@ nav {
   height: 40px;
 }
 
-.down-arrow {
-
-}
 

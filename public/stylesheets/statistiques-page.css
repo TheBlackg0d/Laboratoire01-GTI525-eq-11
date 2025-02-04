@@ -9,6 +9,7 @@ html, body {
 
 .mainSection, .sectionTable {
     font-size: medium;
+    margin-bottom: auto;
 }
 
 /* La loupe */
@@ -27,6 +28,7 @@ html, body {
 
 .btnSearch {
     background-color: white;
+    border: none;
 }
 
 .filters {
@@ -75,4 +77,8 @@ label {
 
 .containerButton {
     margin-left: 25%;
+}
+
+footer {
+    padding: 1rem;
 }

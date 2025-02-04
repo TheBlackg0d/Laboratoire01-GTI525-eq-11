@@ -2,7 +2,7 @@ main {
   display: flex;
   height: 100%;
   flex-direction: row;
-  /*padding: 4rem;*/
+  padding: 4rem;
   justify-content: space-around;
   overflow: hidden;
 }
@@ -10,6 +10,7 @@ main {
   margin: 15px;
   display: flex;
   flex-direction: column;
+  flex: 1;
   /*min-height: 85%;*/
 }
 .heading-point-interet {

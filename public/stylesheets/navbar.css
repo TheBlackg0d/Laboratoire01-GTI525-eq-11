@@ -4,7 +4,10 @@ nav {
   width: 100%;
 }
 
-.navbar.navbar-expand-sm {
+.navbar.navbar-expand-sm.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -46,8 +49,10 @@ nav {
 /*Logo user*/
 
 .navbar-nav.account {
+  order: 1; /* Move the account section to the start */
   display: flex;
-  margin-left: 10%;
+  margin-right: auto; /* Align it to the left */
+  margin-left: auto;
 }
 
 .navbar-nav.account li a img {

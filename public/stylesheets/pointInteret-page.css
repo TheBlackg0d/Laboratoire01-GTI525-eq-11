@@ -11,21 +11,17 @@ main {
   display: flex;
   flex-direction: column;
   flex: 1;
-  /*min-height: 85%;*/
 }
 .heading-point-interet {
   margin-bottom: 30px;
 }
 .heading-point-interet-2 {
-  /*font-size: 3rem;*/
   margin-bottom: 30px;
 }
 .sub-heading-point-interet {
   margin-bottom: 30px;
 }
-.map-point-interet {
-  /*font-size: 1.8rem;*/
-}
+
 
 .select-1 {
   font-size: inherit;
@@ -41,9 +37,6 @@ main {
   margin-bottom: 4rem;
 }
 
-/*.dataTables_filter {*/
-/*  display: none;*/
-/*}*/
 
 
 .sectionTable {

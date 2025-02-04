@@ -1,7 +1,12 @@
-.navbar.navbar-expand-sm {
-  position: sticky;
-  bottom: 0;
-  z-index: 1000;
+.navbar.navbar-expand-sm.footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #3cae65;
 }
 
 .copyright {
@@ -19,7 +24,10 @@
           brightness(100%) contrast(100%);
 
 }
+.navbar-nav.copyright {
 
+
+}
 .socialLogo {
   display: flex;
   flex-direction: row;

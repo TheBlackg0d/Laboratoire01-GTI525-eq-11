@@ -1,1 +1,1 @@
-# ExpressJs - TypeScript - PugJs App Template
+# PédaMap - Projet GTI525 - Équipe 11

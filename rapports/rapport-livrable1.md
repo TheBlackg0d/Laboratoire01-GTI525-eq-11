@@ -68,18 +68,19 @@ Nous allons voir quelque diagrammes de l'architechture utilisée :
 
 # Triage des tableaux
 
-Pour le triage des tableaux nous avons utilisé une librairie qui s'occupe de trier le tableau pour nous.
-La librairie s'appelle dataTable. Tu peux cliquer sur une colonne et sa va trier la table pour cette colonne.
+Pour le triage des tableaux nous avons utilisé une librairie qui s'occupe de trier les tableaux pour nous.
+La librairie s'appelle dataTable. Tu peux cliquer sur une colonne et ça va trier la table pour cette colonne.
 Tu peux aussi faire une recherche pour trouver une valeur et tu peux faire une pagination pour le tableau
 
 ---
 
 # Subdivision des tâches
 
-pour la subdivision des tâches, on a divisé page. Chacun de nous avais deux ou trois pages à faire.
-La page principal et la page d'interêt a été fait par notre Moncles Junior Herissé. Ensuite la page des statistiques
+pour la subdivision des tâches, on a divisé le travail par page. Chacun de nous avais deux ou trois pages à faire.
+La page principal et la page d'interêt a été fait par Moncles Junior Herissé. Ensuite la page des statistiques
 et la page d'itinéraires a été fait par Franck Patrick Assan. Finalement la page de description de l'équipe et la page du
-description du projet a été fait par Anthony Tremblay.
+description du projet a été fait par Anthony Tremblay. Nous avons aussi implementer un côté serveur avec nodeJs en typescript. La personne qui s'est
+occupée de crée le côté serveur était Franck Patrick Assan
 
 ---
 

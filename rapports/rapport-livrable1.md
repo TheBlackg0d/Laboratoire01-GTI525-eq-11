@@ -1,24 +1,22 @@
 ![Logo-ETS](logo-ets.png)
-
 # Livrable 1
 
 ---
 Cours: GTI525
+
 Session: Hiver 2025
+
 Groupe: 01
+
 Équipe: 11
+
 Remis à: Marcos Dias de Assuncao
 
-
-
 **Membres de l'équipe:**
-
 - Franck Patrick Assan
 - Monclés Junior Hérissé
 - Anthony Tremblay
-
 ---
-
 ## Évaluation de la participation
 
 | Nom de l'étudiant      | Facteur multiplicatif |
@@ -26,16 +24,7 @@ Remis à: Marcos Dias de Assuncao
 | Franck Patrick Assan   | 1                     |
 | Monclés Junior Hérissé | 1                     |
 | Anthony Tremblay       | 1                     |
-
-
-
-
 ---
-
-
-
-
-
 # Table des matières
 
 * [Introduction](#introduction)

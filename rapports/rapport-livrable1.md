@@ -3,10 +3,13 @@
 # Livrable 1
 
 ---
-
+Cours: GTI525
+Session: Hiver 2025
 Groupe: 01
-<br>
 Équipe: 11
+Remis à: Marcos Dias de Assuncao
+
+
 
 **Membres de l'équipe:**
 
@@ -24,39 +27,62 @@ Groupe: 01
 | Monclés Junior Hérissé | 1                     |
 | Anthony Tremblay       | 1                     |
 
+
+
+
+---
+
+
+
+
+
+# Table des matières
+
+* [Introduction](#introduction)
+* [Architecture logicielle utilisée](#architecture-logicielle-utilis�e)
+        * [Diagramme de contexte](#diagramme-de-contexte)
+        * [Diagramme de conteneurs](#diagramme-de-conteneurs)
+        * [Diagramme de classes](#diagramme-de-classes)
+* [Triage des tableaux](#triage-des-tableaux)
+* [Subdivision des tâches](#subdivision-des-t�ches)
+* [Conclusion](#conclusion)
+
+<!-- table of contents created by Adrian Bonnet, see https://Relex12.github.io/Markdown-Table-of-Contents for more -->
+
+<!-- table of contents created by Adrian Bonnet, see https://Relex12.github.io/Markdown-Table-of-Contents for more -->
+
 ---
 
 # Introduction
 
-L'application PédaMap est une une application web dévélopper dans le cadre du
-cours GTI525 à l'hivers 2025. C'est une application qui va permettre aux
-adeptes de vélos de facilement consulter les les itinéraire, et informations
-sur le réseau cyclable de la belle ville de Montréal.
-Le projet est divisé en plusieurs livrables.<br> Pour ce premier livrable,
-nous utiliserons différentes technologies web, dans le but de construire la
-partie statique (présentation) de l'application. Tout d'abord, nous verrons
-l'architecture que notre équipe à decider d'utiliser, pour développer cette
-solution. Ensuite, nous exposerons les technniques et outils utilisés pour
-traiter les données fournis pour ce livrable et finalement, on verra comment
-les tâches liées au projet ont été assignées aux différents membres de l'équipe.
+L'application PédaMap est une application web développée dans le cadre du cours
+GTI525 à l'hiver 2025. C'est une application qui va permettre aux adeptes de
+vélo de facilement consulter les itinéraires et les informations sur le réseau
+cyclable de la belle ville de Montréal. Le projet est divisé en plusieurs livrables.
+Pour ce premier livrable, nous utiliserons différentes technologies web dans le
+but de construire la partie statique (présentation) de l'application. Tout 
+d'abord, nous verrons l'architecture que notre équipe a décidé d'utiliser 
+pour  développer cette solution. Ensuite, nous exposerons les techniques et
+outils utilisés pour traiter les données fournies pour ce livrable et,finalement,
+nous verrons comment les tâches liées au projet ont été assignées  aux différents membres de l'équipe.
 
 ---
 
 # Architecture logicielle utilisée
 
-Étant donnée que nous devions concevoir une application Web, nous avons
-choisit le patron architectural Client-Serveur. Nous avons décider d'utiliser
-ExpressJs, un framework minimaliste mais facilement extensible en fonction
-de nos objectifs. Pour la délivrance du contenue statique de la page,
-ExpressJs nous permet de générer le contenu HTML et CSS du côté serveur.
+Étant donné que nous devions concevoir une application web, nous avons 
+choisi le  patron architectural Client-Serveur. Nous avons décidé d'utiliser 
+Express.js,  un framework minimaliste mais facilement extensible en fonction de 
+nos objectifs. Pour la délivrance du contenu statique de la page,
+Express.js nous permet de générer le contenu HTML et CSS du côté serveur.
 
-Nous allons voir quelque diagrammes de l'architechture utilisée :
+Nous allons voir quelques diagrammes de l'architecture utilisée :
 
-### Diagrame de contexte :
+### Diagramme de contexte
 
 ![Diagramme de contexte](models/context-diagram.png)
 
-### Diagrame de conteneurs :
+### Diagramme de conteneurs
 
 ![Diagramme de container](models/pédamap_container_diagram.png)
 

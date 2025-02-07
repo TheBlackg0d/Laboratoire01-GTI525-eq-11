@@ -78,10 +78,15 @@ Tu peux aussi faire une recherche pour trouver une valeur et tu peux faire une p
 
 pour la subdivision des tâches, on a divisé le travail par page. Chacun de nous avais deux ou trois pages à faire.
 La page principal et la page d'interêt a été fait par Moncles Junior Herissé. Ensuite la page des statistiques
-et la page d'itinéraires a été fait par Franck Patrick Assan. Finalement la page de description de l'équipe et la page du
-description du projet a été fait par Anthony Tremblay. Nous avons aussi implementer un côté serveur avec nodeJs en typescript. La personne qui s'est
-occupée de crée le côté serveur était Franck Patrick Assan
+et la page des itinéraires a été fait par Franck Patrick Assan. Finalement la page de description de l'équipe et la page du
+description du projet a été fait par Anthony Tremblay. Nous avons aussi implementé un côté serveur avec nodeJs en typescript. La personne qui s'est
+occupée de créer le côté serveur était Franck Patrick Assan
 
 ---
 
 # Conclusion
+
+En conclusion, on a fait les pages statiques de notre application pour le premier livrable. On s'est
+occupée d'afficher les tableaux et de les trier. Nous avons utilisé plusieur technologie pour pouvoir construire
+la partie statique du projet. On a aussi prit de l'avance en implémentant une partie serveur. Cette avance va nous aider a faire
+le livrable 2 plus facilement.

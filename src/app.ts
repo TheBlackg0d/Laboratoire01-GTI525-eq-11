@@ -1,81 +1,78 @@
-import express from 'express'
-import {statRouter} from "./routes/statistiqueRouter";
-import logger from 'morgan';
-import flash from 'express-flash-plus';
-import {PIRouter} from "./routes/pointInteretRouter";
+import express from "express";
+import { statRouter } from "./routes/statistiqueRouter";
+import logger from "morgan";
+import flash from "express-flash-plus";
+import { PIRouter } from "./routes/pointInteretRouter";
+import { IRouter } from "./routes/itineraireRouter";
 
 class App {
+  public expressApp: express.Application;
 
-    public expressApp: express.Application
+  constructor() {
+    this.expressApp = express();
 
-    constructor() {
-        this.expressApp = express()
+    // this.middleware() //  For middleware implementation
+    this.middleware();
+    this.routes(); // For routes implementation
 
-        // this.middleware() //  For middleware implementation
-        this.middleware();
-        this.routes() // For routes implementation
+    // Pug Engine
+    this.expressApp.set("view engine", "pug");
 
-        // Pug Engine
-        this.expressApp.set('view engine', 'pug') 
+    // Static files
+    this.expressApp.use(
+      express.static(__dirname + "/public") as express.RequestHandler
+    );
+  }
 
-        // Static files
-        this.expressApp.use(
-            express.static(__dirname + '/public') as express.RequestHandler
-        );
-    }
+  private middleware(): void {
+    this.expressApp.use(logger("dev") as express.RequestHandler);
+    this.expressApp.use(express.json() as express.RequestHandler);
+    this.expressApp.use(
+      express.urlencoded({ extended: false }) as express.RequestHandler
+    );
+    this.expressApp.use(flash());
+  }
 
-    private middleware(): void {
-        this.expressApp.use(logger('dev') as express.RequestHandler);
-        this.expressApp.use(express.json() as express.RequestHandler);
-        this.expressApp.use(express.urlencoded({ extended: false }) as express.RequestHandler);
-        this.expressApp.use(flash());
-    }
+  private routes(): void {
+    const router = express.Router();
 
+    // Home Page
+    router.get("/", (req, res) => {
+      res.render("index", { title: "Home" });
+    });
 
-    private routes(): void {
-        const router = express.Router()
+    router.get("/statistique", async (req, res) => {
+      let compteurData = await statRouter.controllerStats.getStatData();
+      res.render("statistique", {
+        title: "Statistique",
+        listCompteurs: compteurData,
+      });
+    });
 
-        // Home Page
-        router.get('/', (req, res) => {
-            res.render(
-                'index', 
-                { title: 'Home' }
-            )
-        });
+    router.get("/itineraire", (req, res) => {
+      res.render("itineraire", {
+        title: "Pistes et voies cyclables",
+      });
+    });
 
-        router.get('/statistique', async (req, res) => {
-            let compteurData = await statRouter.controllerStats.getStatData()
-            res.render('statistique', {
-                title: 'Statistique',
-                listCompteurs: compteurData
-            });
-        });
+    // Team Page
+    router.get("/equipe", (req, res) => {
+      res.render("equipe", {
+        title: "Equipe 11",
+      });
+    });
 
-        router.get('/itineraire', (req, res) => {
-            res.render('itineraire', {
-                title: 'Pistes et voies cyclables'
-            });
-        });
+    router.get("/a-propos", async (req, res) => {
+      res.render("project", {
+        title: "Le Projet - Mobilité Urbaine",
+      });
+    });
 
-        // Team Page
-        router.get('/equipe', (req, res) => {
-            res.render('equipe', {
-                title: 'Equipe 11',
-            })
-        })
-
-        router.get('/a-propos', async (req, res) => {
-            res.render('project', {
-                title: 'Le Projet - Mobilité Urbaine',
-            })
-        });
-
-        this.expressApp.use("/", router);
-        this.expressApp.use("/statistique", statRouter.router); // Pour tout autre operations avec la page statistique
-        this.expressApp.use("/pointInteret", PIRouter.router);
-    }
-
+    this.expressApp.use("/", router);
+    this.expressApp.use("/statistique", statRouter.router); // Pour tout autre operations avec la page statistique
+    this.expressApp.use("/pointInteret", PIRouter.router);
+    this.expressApp.use("/itineraire", IRouter.router);
+  }
 }
 
-export default new App().expressApp
-
+export default new App().expressApp;

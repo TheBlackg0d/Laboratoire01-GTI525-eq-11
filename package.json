@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run build && node dist/index.js",
     "build": "tsc -b --verbose && shx --verbose cp -ru public dist/",
+    "bsw": "npm run build  && npm run start:watch",
     "start:watch": "nodemon",
     "watch": "jest --watch --coverage",
     "test": "jest --colors --coverage"
@@ -18,10 +19,11 @@
       "node_modules"
     ],
     "watch": [
-      "src"
+      "src",
+      "public"
     ],
     "exec": "npm run build && npm start",
-    "ext": "ts"
+    "ext": "ts, js"
   },
   "dependencies": {
     "debug": "^2.6.9",

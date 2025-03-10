@@ -4,7 +4,42 @@ html
         include ./commons/header.pug
         link(rel="stylesheet" href="/stylesheets/itineraire-page.css")
     body
-        include ./commons/navbar.pug
+      include ./commons/navbar.pug
+      <div class="modal" tabindex="-1"id="myModal">
+        <div class="modal-dialog modal-lg" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Légende</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              .container 
+                .shape-1 
+                .title-description
+                  <h5 class="modal-title">REV</h5>
+                  <p>Ensemble de pistes cyclables protégées qui relie divers points d'intérêt sur l'île de montréal </p>
+              .container 
+                .shape-2 
+                .title-description
+                  <h5 class="modal-title">Voie partagée</h5>
+                  <p>Des pistes cyclabes délimitées ou des rues partagées par les cyclistes et les automobilistes </p>
+              .container 
+                .shape-3 
+                .title-description
+                  <h5 class="modal-title">Voie protégée</h5>
+                  <p>Une voie distincte, séparée par un élément physique de  la circulation motorisée </p>
+              .container 
+                .shape-4 
+                .title-description
+                  <h5 class="modal-title">Sentier polyvalent</h5>
+                  <p>Un chemin en dehors de la route ou le long de celle-ci, où les piétons et les cyclistes peuvent circuler.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
         .d-flex.flex-row
 
             .sectionGauche
@@ -44,16 +79,14 @@ html
 
             .sectionDroite
                 .container-fluid
-                    iframe(src="https://www.google" +
-                    ".com/maps/embed?pb=!1m18!1m12!1m3!1d178787.81912808729!2d-73" +
-                    ".71187335000002!3d45.5591827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4" +
-                    "f13.1!3m3!1m2!1s0x4cc91a541c64b70d%3A0x654e3138211fefef!2zTW9ud" +
-                    "HLDqWFsLCBRQw!5e0!3m2!1sfr!2sca!4v1738034834402!5m2!1sfr!2sca"
+                  img(src="/images/error_black.png", alt="" class="popup-icon" id="popupIcon")
+                  div(id="map")
 
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade")
+      
 
         include ./commons/footer.pug
-
+<script src="https://cdn.jsdelivr.net/npm/ol@v10.4.0/dist/ol.js"></script>
+script(src="/javascript/itineraire.js")
 
 
 

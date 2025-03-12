@@ -1,66 +1,111 @@
-html, body {
-    display: flex;
-    height: 100%;
-    margin: 0;
-    flex-direction: column;
-    overflow-x: hidden;
+html,
+body {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  flex-direction: column;
+  overflow-x: hidden;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .sectionGauche {
-    justify-content: space-between;
-    padding: 25px;
-    overflow-wrap: break-word;
+  justify-content: space-between;
+  padding: 25px;
+  overflow-wrap: break-word;
 }
 
 .sectionDroite {
-    padding: 20px;
-    margin-top: 20px;
-    align-items: end;
+  padding: 20px;
+  margin-top: 20px;
+  align-items: end;
 }
 
-.titre, .description, .btn-group-horizontal, .typeDeVoie {
-    padding-bottom: 20px;
-    text-wrap: auto;
+.titre,
+.description,
+.btn-group-horizontal,
+.typeDeVoie {
+  padding-bottom: 20px;
+  text-wrap: auto;
 }
 
 p {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .btn-check {
-    font-size: 1.9em;
+  font-size: 1.9em;
 }
 
-#debut, #fin {
-    height: 35px;
-    width: 150px;
-    align-self: center;
+#debut,
+#fin {
+  height: 35px;
+  width: 150px;
+  align-self: center;
 }
 
 .form-check-input {
-    height: 15px;
-    width: 15px;
+  height: 15px;
+  width: 15px;
 }
 
 .form-check-label {
-    padding-left: 10px;
-    font-size: 1.2em;
+  padding-left: 10px;
+  font-size: 1.2em;
 }
 
-iframe {
-    width: 700px;
-    height: 700px;
-    min-height: 300px; /* Set a minimum height */
-    min-width: 300px;
-    border: none;
+#map {
+  width: 700px;
+  height: 700px;
+  min-height: 300px; /* Set a minimum height */
+  min-width: 300px;
 }
 
+.popup-icon {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 100;
+  height: 40px;
+  width: 40px;
+}
 
+.sectionDroite {
+  position: relative;
+}
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 
+.title-description {
+  display: flex;
+  flex-direction: column;
+}
+.shape-1 {
+  height: 50px;
+  width: 50px;
+  background-color: #2ac7dd;
+}
+
+.shape-2 {
+  height: 50px;
+  width: 50px;
+  background-color: #84ca4b;
+}
+.shape-3 {
+  height: 50px;
+  width: 50px;
+  background-color: #025d29;
+}
+.shape-4 {
+  height: 50px;
+  width: 50px;
+  background-color: #b958d9;
+}

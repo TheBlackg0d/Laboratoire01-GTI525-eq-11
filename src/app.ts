@@ -7,6 +7,8 @@ import mongoose from "mongoose";
 import { config } from "./config/db";
 import { TRouter } from "./routes/TerritoireRouter";
 import { apiRouter } from "./routes/ApiRouter";
+import { IRouter } from "./routes/itineraireRouter";
+
 class App {
   public expressApp: express.Application;
 
@@ -82,6 +84,7 @@ class App {
     this.expressApp.use("/statistique", statRouter.router); // Pour tout autre operations avec la page statistique
     this.expressApp.use("/pointInteret", PIRouter.router);
     this.expressApp.use("/gti525", apiRouter.router);
+    this.expressApp.use("/itineraire", IRouter.router);
   }
 }
 

@@ -29,6 +29,15 @@ export class PointInteretRouter {
     }
   }
 
+  public async getAllFontaine(req: Request, res: Response, next: NextFunction) {
+    try {
+      const fontaine = await this.controllerPointInteret.getAllFontaine();
+      return res.status(200).json({ fontaine });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+
   get controllerPointInteret() {
     return this.pointInteretController;
   }
@@ -39,6 +48,7 @@ export class PointInteretRouter {
 
   init() {
     this._router.get("/", this.getStatData.bind(this));
+    this._router.get("/pointsdinteret", this.getAllFontaine.bind(this));
   }
 }
 

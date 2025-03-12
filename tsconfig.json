@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    
     "target": "es2016",
-    "module": "commonjs",                                
+    "module": "commonjs",
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "strict": true,
@@ -12,10 +11,6 @@
     "incremental": true,
     "typeRoots": ["src/types", "node_modules/@types"]
   },
-  "include": [
-    "src/**/*.ts", "global.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "global.d.ts", "src/config/db.ts"],
+  "exclude": ["node_modules"]
 }

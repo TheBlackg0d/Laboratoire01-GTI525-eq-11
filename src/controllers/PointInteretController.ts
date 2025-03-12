@@ -1,4 +1,5 @@
 import { PointInteretInterface } from "../interfaces/PointInteret-interface";
+import Fontaines from "../Models/Fontaines";
 
 const papaparse = require("papaparse");
 
@@ -18,5 +19,9 @@ export default class PointInteretController {
     }
 
     return [];
+  }
+
+  async getAllFontaine() {
+    return Fontaines.find();
   }
 }

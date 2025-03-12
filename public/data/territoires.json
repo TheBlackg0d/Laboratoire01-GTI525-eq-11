@@ -1,0 +1,172 @@
+[
+  {
+    "nom": "Mont-Royal",
+    "codeID": "12",
+    "abrev": "MR"
+  },
+  {
+    "nom": "Saint-Léonard",
+    "codeID": "6",
+    "abrev": "LN"
+  },
+  {
+    "nom": "Plateau-Mont-Royal",
+    "codeID": "15",
+    "abrev": "PM"
+  },
+  {
+    "nom": "Le Sud-Ouest",
+    "codeID": "14",
+    "abrev": "SO"
+  },
+  {
+    "nom": "Saint-Laurent",
+    "codeID": "7",
+    "abrev": "LR"
+  },
+  {
+    "nom": "Beaconsfield",
+    "codeID": "25",
+    "abrev": "BF"
+  },
+  {
+    "nom": "Outremont",
+    "codeID": "23",
+    "abrev": "OM"
+  },
+  {
+    "nom": "Côte-des-Neiges-Notre-Dame-de-Grâce",
+    "codeID": "20",
+    "abrev": "CN"
+  },
+  {
+    "nom": "L'Île-Bizard-Sainte-Geneviève",
+    "codeID": "24",
+    "abrev": "IS"
+  },
+  {
+    "nom": "Dorval",
+    "codeID": "1",
+    "abrev": "DV"
+  },
+  {
+    "nom": "Pointe-Claire",
+    "codeID": "33",
+    "abrev": "PC"
+  },
+  {
+    "nom": "Montréal-Ouest",
+    "codeID": "30",
+    "abrev": "MO"
+  },
+  {
+    "nom": "Montréal-Nord",
+    "codeID": "8",
+    "abrev": "MN"
+  },
+  {
+    "nom": "Lachine",
+    "codeID": "9",
+    "abrev": "LC"
+  },
+  {
+    "nom": "Mercier-Hochelaga-Maisonneuve",
+    "codeID": "16",
+    "abrev": "MH"
+  },
+  {
+    "nom": "Ville-Marie",
+    "codeID": "13",
+    "abrev": "VM"
+  },
+  {
+    "nom": "Westmount",
+    "codeID": "22",
+    "abrev": "WM"
+  },
+  {
+    "nom": "LaSalle",
+    "codeID": "10",
+    "abrev": "LS"
+  },
+  {
+    "nom": "Ahuntsic-Cartierville",
+    "codeID": "17",
+    "abrev": "AC"
+  },
+  {
+    "nom": "Rivière-des-Prairies-Pointe-aux-Trembles",
+    "codeID": "11",
+    "abrev": "RP"
+  },
+  {
+    "nom": "Montréal-Est",
+    "codeID": "29",
+    "abrev": "ME"
+  },
+  {
+    "nom": "Kirkland",
+    "codeID": "21",
+    "abrev": "KL"
+  },
+  {
+    "nom": "Villeray-Saint-Michel-Parc-Extension",
+    "codeID": "19",
+    "abrev": "VS"
+  },
+  {
+    "nom": "Baie-d'Urfé",
+    "codeID": "26",
+    "abrev": "BU"
+  },
+  {
+    "nom": "Senneville",
+    "codeID": "32",
+    "abrev": "SV"
+  },
+  {
+    "nom": "L'Île-Dorval",
+    "codeID": "28",
+    "abrev": "ID"
+  },
+  {
+    "nom": "Pierrefonds-Roxboro",
+    "codeID": "5",
+    "abrev": "PR"
+  },
+  {
+    "nom": "Sainte-Anne-de-Bellevue",
+    "codeID": "31",
+    "abrev": "BV"
+  },
+  {
+    "nom": "Rosemont-La Petite-Patrie",
+    "codeID": "18",
+    "abrev": "RO"
+  },
+  {
+    "nom": "Côte-Saint-Luc",
+    "codeID": "27",
+    "abrev": "CL"
+  },
+  {
+    "nom": "Verdun",
+    "codeID": "4",
+    "abrev": "VD"
+  },
+  {
+    "nom": "Hampstead",
+    "codeID": "2",
+    "abrev": "HS"
+  },
+  {
+    "nom": "Dollard-Des Ormeaux",
+    "codeID": "3",
+    "abrev": "DO"
+  },
+  {
+    "nom": "Anjou",
+    "codeID": "34",
+    "abrev": "AJ"
+  }
+]

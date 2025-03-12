@@ -7,6 +7,45 @@ html
     link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
   body
     include ./commons/navbar.pug
+    <div class="modal" tabindex="-1" id="statsModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body body-charts">
+            canvas(id="statsCharts", class="charts")
+        
+            div(class="params")
+              div.periode
+                h5() Période 
+                label(for="dateDebut" ) 
+                input(type="date" id="dateDebut" min='2019-01-01' max='2022-12-31')
+                br
+                br
+                label(for="dateFin") 
+                input(type="date" id="dateFin" min='2019-01-01' max='2022-12-31')
+              div.intervalle
+                h5() Largeur d'intervalle 
+                div()
+                  <input type="radio" id="day" name="radioTime" checked value="day" class="form-radio-input">
+                  <label for="day">Jour</label>
+                div()
+                  <input type="radio" id="week" name="radioTime" value="week" class="form-radio-input">
+                  <label for="week">Semaine</label>
+                div()
+                  <input type="radio" id="Mois" name="radioTime"  value="mois" class="form-radio-input">
+                  <label for="year">Mois</label>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            button(id='getChart' class="btn btn-primary") update
+          </div>
+        </div>
+      </div>
+    </div>
     .d-flex.p-2.mainSection
         .p-2.filters
             h1 #{title}
@@ -30,30 +69,52 @@ html
                                 src="/images/search-icon.png"  alt="search-icon" class="search-icon")
                      
         .sectionTable
-            .containerButton
-                .btn.btn-outline-primary#btnCapteur Liste des capteurs
-                .btn.btn-outline-primary#btnCarte Carte
-            table.table.table-hover#myTable
-                thead
-                    tr
-                        th Identifiant
-                        th Nom
-                        th Status
-                        th Année d'implantation
-                tbody
+            
+            <ul class="nav nav-pills sm-3" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                button(class="nav-link active text-body" id="pills-capteur-tab" data-bs-toggle="pill" data-bs-target="#pills-capteur" type="button" role="tab" aria-controls="pills-home" aria-selected="true") Liste des capteurs
+              
+              </li>
+              <li class="nav-item" role="presentation">
+                button(class="nav-link text-body" id="pills-carte-tab" data-bs-toggle="pill" data-bs-target="#pills-carte" type="button" role="tab" aria-controls="pills-profile" aria-selected="false") Carte
 
-                    each compteur in listCompteurs
-                        -var id = compteur.ID
-                        -var nom = compteur.Nom
-                        -var status = compteur.Statut
-                        -var annee_implante = compteur.Annee_implante
-                        tr
-                            td #{id}
-                            td #{nom}
-                            td #{status}
-                            td #{annee_implante}
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-capteur" role="tabpanel" aria-labelledby="pills-capteur-tab">
+                table.table.table-hover#myTable
+                  thead
+                      tr
+                          th Identifiant
+                          th Nom
+                          th Status
+                          th Année d'implantation
+                          th Passages
+                  tbody
+
+                      each compteur in listCompteurs
+                          -var id = compteur.ID
+                          -var nom = compteur.Nom
+                          -var status = compteur.Statut
+                          -var annee_implante = compteur.Annee_implante
+                          tr
+                              td #{id}
+                              td #{nom}
+                              td #{status}
+                              td #{annee_implante}
+                              td 
+                                button( class="btn btn-outline-primary btn-compteur" data-id-compteur=id) Passages
+              </div>
+              <div class="tab-pane fade" id="pills-carte" role="tabpanel" aria-labelledby="pills-carte-tab">
+                div(id="map")
+                  <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                  <div id="popup-content"></div>
+              </div>
+          
     include ./commons/footer.pug
     
     script(src="https://code.jquery.com/jquery-3.7.1.min.js")
     script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
     script(src="/javascript/statistiques.js")

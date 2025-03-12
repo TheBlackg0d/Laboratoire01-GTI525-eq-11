@@ -1,84 +1,153 @@
 /* Assurez-vous que le conteneur principal prend toute la hauteur de la page */
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    overflow-x: auto;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
 }
 
-.mainSection, .sectionTable {
-    font-size: medium;
-    margin-bottom: auto;
+.mainSection,
+.sectionTable {
+  font-size: medium;
+  margin-bottom: auto;
 }
 
 /* La loupe */
-.flex-row { 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-icon {
-    height: 25px;
-    background-color: #46be72;
-    margin-left: 5px;
-    border-radius: 55%;
+  height: 25px;
+  background-color: #46be72;
+  margin-left: 5px;
+  border-radius: 55%;
 }
 
 .btnSearch {
-    background-color: white;
-    border: none;
+  background-color: white;
+  border: none;
 }
 
 .filters {
-    margin-top: 20px;
-    margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .textDescriptif {
-    max-width: 70%;
-    margin-bottom: 30px;
+  max-width: 70%;
+  margin-bottom: 30px;
 }
 
 label {
-    /*font-size: 1.6rem;*/
-    font-weight: bold;
+  /*font-size: 1.6rem;*/
+  font-weight: bold;
 }
 
 .form-control {
-    font-size: 1.6rem;
-    width: 60%;
-    padding: 5px;
-    margin-bottom: 10px;
+  font-size: 1.6rem;
+  width: 60%;
+  padding: 5px;
+  margin-bottom: 10px;
 }
-
 
 .sectionTable {
-    margin: 20px;
-    width: 100%;
-    align-content: center;
-  }
-
-.btn.btn-outline-primary {
-    margin-left: 20px;
-    width: 120px;
-    margin-top: 20px;
-    margin-bottom: 30px;
+  margin: 20px;
+  width: 100%;
+  align-content: center;
 }
 
-#btnCapteur,  #btnCarte{
-    align-self: center;
-    width: auto;
-    border-radius: 10px;
-    padding: 5px 15px;
-    font-size: large;
+.btn.btn-outline-primary {
+  margin-left: 20px;
+  width: 120px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.charts {
+  max-width: 80%;
+  height: 100%;
+  margin-right: 40px;
+}
+.params {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.body-charts {
+  display: flex;
+}
+.intervalle {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+#btnCapteur,
+#btnCarte {
+  align-self: center;
+  width: auto;
+  border-radius: 10px;
+  padding: 5px 15px;
+  font-size: large;
 }
 
 .containerButton {
-    margin-left: 25%;
+  margin-left: 25%;
 }
 
 footer {
-    padding: 1rem;
+  padding: 1rem;
+}
+
+#map {
+  margin: 20px;
+  height: 700px;
+  width: 100%;
+}
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 100px;
+}
+.ol-popup:after,
+.ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+.ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+.ol-popup-closer:after {
+  content: "✖";
 }

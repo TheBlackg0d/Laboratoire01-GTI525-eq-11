@@ -30,7 +30,7 @@ export class ItineraireRouter {
   }
 
   init() {
-    this._router.get("/geo", this.getGeoData.bind(this));
+    this._router.get("/pistes", this.getGeoData.bind(this));
   }
 }
 

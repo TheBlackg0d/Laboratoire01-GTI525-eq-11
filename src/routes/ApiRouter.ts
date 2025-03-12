@@ -3,6 +3,7 @@ import TerritoireController from "../controllers/TerritoireController";
 import { TRouter } from "./TerritoireRouter";
 import { compteurRouter } from "./CompteurRouter";
 import { PIRouter } from "./pointInteretRouter";
+import { IRouter } from "./itineraireRouter";
 export class ApiRouter {
   private _router: Router;
   private territoireController: TerritoireController;
@@ -22,6 +23,7 @@ export class ApiRouter {
     this._router.use("/v1/", TRouter.router);
     this._router.use("/v1/", compteurRouter.router);
     this._router.use("/v1/", PIRouter.router);
+    this._router.use("/v1/", IRouter.router);
   }
 }
 export const apiRouter = new ApiRouter();

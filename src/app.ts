@@ -84,7 +84,6 @@ class App {
     this.expressApp.use("/statistique", statRouter.router); // Pour tout autre operations avec la page statistique
     this.expressApp.use("/pointInteret", PIRouter.router);
     this.expressApp.use("/gti525", apiRouter.router);
-    this.expressApp.use("/itineraire", IRouter.router);
   }
 }
 

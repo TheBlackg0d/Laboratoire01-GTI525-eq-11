@@ -28,6 +28,9 @@ html
                             .col-6
                                 select(name="arrondissement", id="arrondissement").form-select.select-1
                                     option(value="Tous") Tous
+                                    each territoire in territoires
+                                      -var a = territoire
+                                      option(value=a.codeID) #{a.nom}  
                         .row.lieu-container
                             .col-6
                                 label(for="typeDeLieu") Type de lieu:
@@ -36,12 +39,26 @@ html
                                     option(value="Fontaine à boire") Fontaine à boire
             .sectionTable
                 table.table.table-hover#myTable
-                    thead
-                        tr
-                            th Arrondissement
-                            th Code
-                            th Abbreviation
-                    tbody
+                  thead
+                    tr
+                      th Identifiant
+                      th Type
+                      th Arrondissement
+                      th Nom De Lieu
+                      th Proximité jeux repère
+                  tbody
+              
+                    each fontaine in listFontaines
+                      -var id = fontaine.ID
+                      -var arrondissement = fontaine.Arrondissement
+                      -var nomLieu = fontaine.Nom_parc_lieu
+                      -var proximite = fontaine.Proximité_jeux_repère
+                      tr
+                        td #{id}
+                        td Fontaine à boire
+                        td #{arrondissement}
+                        td #{nomLieu}
+                        td #{proximite}
         include ./commons/footer.pug
 script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
 script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js")

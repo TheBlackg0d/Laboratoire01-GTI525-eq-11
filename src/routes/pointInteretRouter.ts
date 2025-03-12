@@ -1,12 +1,15 @@
 import { Request, Response, NextFunction, Router } from "express";
 import PointInteretController from "../controllers/PointInteretController";
+import TerritoireController from "../controllers/TerritoireController";
 
 export class PointInteretRouter {
   private _router: Router;
   private pointInteretController: PointInteretController;
+  private territoireController: TerritoireController;
 
   constructor() {
     this.pointInteretController = new PointInteretController();
+    this.territoireController = new TerritoireController();
     this._router = Router();
     this.init();
   }
@@ -15,14 +18,12 @@ export class PointInteretRouter {
     try {
       const data = await this.pointInteretController.getStatData();
 
-      const uniqueArrondissements = [
-        ...new Set(data.map((item) => item.Arrondissement)),
-      ];
+      const territoires = await this.territoireController.readAll();
 
       res.render("pointInteret", {
         title: "Point d'interet",
         listFontaines: data,
-        uniqueArrondissements,
+        territoires,
       });
     } catch (err) {
       console.log("Error in getting Compteurs stats: ", err);

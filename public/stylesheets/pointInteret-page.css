@@ -22,7 +22,6 @@ main {
   margin-bottom: 30px;
 }
 
-
 .select-1 {
   font-size: inherit;
 }
@@ -37,10 +36,11 @@ main {
   margin-bottom: 4rem;
 }
 
-
-
 .sectionTable {
   margin: 20px;
   width: 100%;
   align-content: center;
+}
+#myTable_filter {
+  display: none;
 }

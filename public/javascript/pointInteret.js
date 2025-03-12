@@ -1,5 +1,5 @@
 // Initialize DataTable with Multi-column Ordering
-$(document).ready(function () {
+$(function () {
   let dataTable = $("#myTable").DataTable({
     order: [], // Default no ordering
     columnDefs: [
@@ -8,9 +8,16 @@ $(document).ready(function () {
     paging: true,
     lengthMenu: [20, 50, 75, 100],
     searching: true,
-    language: {
-      url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/French.json", // French translation (optional)
-    },
+  });
+
+  $("#arrondissement").on("change", () => {
+    let searchData = $(this).find(":selected").val();
+
+    if (searchData == "Tous") {
+      searchData = "";
+    }
+    console.log(searchData);
+    dataTable.search(searchData).draw();
   });
 });
 //   // Initialize the map
@@ -52,3 +59,162 @@ $(document).ready(function () {
 //     dataTable.search(searchData).draw();
 //   });
 // });
+
+$(function () {
+  // Initialize map
+  var map = L.map("map").setView([45.5017, -73.5673], 10);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  var geojsonLayer;
+  var selectedArrondissementLayer = null;
+  var arrondissements = [];
+
+  function selectArrondissementByName(arrondissementName) {
+    if (selectedArrondissementLayer !== null) {
+      geojsonLayer.resetStyle(selectedArrondissementLayer);
+      selectedArrondissementLayer = null;
+    }
+    geojsonLayer.eachLayer(function (layer) {
+      if (layer.feature.properties.NOM === arrondissementName) {
+        selectedArrondissementLayer = layer;
+        layer.setStyle({
+          fillColor: "#FF0000",
+          weight: 2,
+          opacity: 1,
+          color: "white",
+          fillOpacity: 0.5,
+        });
+        map.fitBounds(layer.getBounds());
+      }
+    });
+  }
+
+  // Load GeoJSON data
+  $.getJSON("/data/territoires.geojson", function (data) {
+    geojsonLayer = L.geoJSON(data, {
+      style: function (feature) {
+        return {
+          fillColor: "#ADD8E6",
+          weight: 2,
+          opacity: 1,
+          color: "white",
+          fillOpacity: 0.7,
+        };
+      },
+      onEachFeature: function (feature, layer) {
+        layer.on({
+          mouseover: function (e) {
+            layer.setStyle({
+              weight: 5,
+              color: "#666",
+              fillOpacity: 0.9,
+            });
+          },
+          mouseout: function (e) {
+            if (
+              selectedArrondissementLayer === null ||
+              selectedArrondissementLayer != layer
+            ) {
+              geojsonLayer.resetStyle(layer);
+            } else {
+              layer.setStyle({
+                fillColor: "#FF0000",
+                weight: 2,
+                opacity: 1,
+                color: "white",
+                fillOpacity: 0.5,
+              });
+            }
+          },
+          click: function (e) {
+            if (selectedArrondissementLayer !== null) {
+              geojsonLayer.resetStyle(selectedArrondissementLayer);
+            }
+            selectedArrondissementLayer = layer;
+            layer.setStyle({
+              fillColor: "#FF0000",
+              weight: 2,
+              opacity: 1,
+              color: "white",
+              fillOpacity: 0.5,
+            });
+            $("#arrondissement").val(feature.properties.NOM);
+            map.fitBounds(e.target.getBounds());
+          },
+        });
+        arrondissements.push(feature.properties.NOM);
+      },
+    }).addTo(map);
+
+    var select = $("#arrondissement");
+    select.empty();
+    select.append(
+      $("<option>", {
+        value: "Tous",
+        text: "Tous",
+      })
+    );
+    arrondissements.sort().forEach(function (arrondissement) {
+      select.append(
+        $("<option>", {
+          value: arrondissement,
+          text: arrondissement,
+        })
+      );
+    });
+  });
+
+  $("#arrondissement").change(function () {
+    var selectedArrondissement = $(this).val();
+    if (selectedArrondissement === "Tous") {
+      if (selectedArrondissementLayer !== null) {
+        geojsonLayer.resetStyle(selectedArrondissementLayer);
+        selectedArrondissementLayer = null;
+      }
+      map.setView([45.5017, -73.5673], 10);
+    } else {
+      selectArrondissementByName(selectedArrondissement);
+    }
+  });
+
+  // Load Arrondissements from CSV
+  $.ajax({
+    type: "GET",
+    url: "/data/territoires.csv",
+    dataType: "text",
+    success: function (data) {
+      Papa.parse(data, {
+        complete: function (results) {
+          // Populate the table
+          var tableBody = $("#myTable tbody");
+          tableBody.empty();
+          results.data.forEach(function (row) {
+            if (row[0] && row[1] && row[2]) {
+              var arrondissement = row[0];
+              var code = row[1];
+              var abbreviation = row[2];
+              var newRow = `
+                              <tr data-arrondissement="${arrondissement}">
+                                  <td>${arrondissement}</td>
+                                  <td>${code}</td>
+                                  <td>${abbreviation}</td>
+                              </tr>
+                          `;
+              tableBody.append(newRow);
+            }
+          });
+
+          $("#myTable").DataTable();
+
+          $("#myTable tbody").on("click", "tr", function () {
+            var arrondissement = $(this).data("arrondissement");
+            $("#arrondissement").val(arrondissement);
+            selectArrondissementByName(arrondissement);
+          });
+        },
+      });
+    },
+  });
+});

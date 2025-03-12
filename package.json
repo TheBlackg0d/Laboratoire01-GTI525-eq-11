@@ -37,7 +37,11 @@
     "morgan": "^1.9.1",
     "node-fetch": "^3.3.2",
     "papaparse": "^5.5.1",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "jquery": "^3.7.1",
+    "datatables.net": "^1.13.6",
+    "datatables.net-dt": "^1.13.6",
+    "leaflet": "^1.7.1"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",

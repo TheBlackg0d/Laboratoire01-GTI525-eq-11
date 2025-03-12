@@ -4,7 +4,7 @@ import App from './app';
 
 debug('ts-express:server');
 
-const port = Number.parseInt(process.env.PORT || '3000');
+const port = Number.parseInt(process.env.PORT || '5173');
 if (Number.isNaN(port)) {
   console.error('PORT must be a number');
   process.exit(1);

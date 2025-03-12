@@ -4,6 +4,14 @@ html
         include ./commons/header.pug
         link(rel="stylesheet" href="/stylesheets/pointInteret-page.css")
         link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
+        link(rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css")
+        style.
+            #map { z-index: 1; }
+            .leaflet-interactive { cursor: pointer; }
+            .selected-arrondissement {
+                fill: #FF0000 !important;
+                fill-opacity: 0.5 !important;
+            }
     body
         include ./commons/navbar.pug
         main
@@ -11,7 +19,7 @@ html
                 h1.heading-point-interet Points d'intérêt
                 p.sub-heading-point-interet Le site propose beaucoup de lieu d'interet dans le grand montreal qui pourrait etre utile pour les amateurs de velo
                 h3.heading-point-interet-2 Territoires:
-                img(src="/images/google-map.webp", alt="").img-google-map
+                #map(style="height: 400px;").img-google-map
                 .map-point-interet
                     form(action="")
                         .row.arrondissement-container
@@ -20,9 +28,6 @@ html
                             .col-6
                                 select(name="arrondissement", id="arrondissement").form-select.select-1
                                     option(value="Tous") Tous
-                                    each arrondissement in uniqueArrondissements
-                                        -var a = arrondissement
-                                        option(value=a) #{a}
                         .row.lieu-container
                             .col-6
                                 label(for="typeDeLieu") Type de lieu:
@@ -33,27 +38,164 @@ html
                 table.table.table-hover#myTable
                     thead
                         tr
-                            th Identifiant
-                            th Type
                             th Arrondissement
-                            th Nom De Lieu
-                            th Proximité jeux repère
+                            th Code
+                            th Abbreviation
                     tbody
-
-                        each fontaine in listFontaines
-                            -var id = fontaine.ID
-                            -var arrondissement = fontaine.Arrondissement
-                            -var nomLieu = fontaine.Nom_parc_lieu
-                            -var proximite = fontaine.Proximité_jeux_repère
-                            tr
-                                td #{id}
-                                td Fontaine à boire
-                                td #{arrondissement}
-                                td #{nomLieu}
-                                td #{proximite}
         include ./commons/footer.pug
-
 script(src="https://code.jquery.com/jquery-3.7.1.min.js")
 script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
-script(src="/javascript/pointInteret.js")
+script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js")
+script.
+    $(document).ready(function () {
+        // Initialize map
+        var map = L.map('map').setView([45.5017, -73.5673], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        var geojsonLayer;
+        var selectedArrondissementLayer = null;
+        var arrondissements = [];
 
+        function selectArrondissementByName(arrondissementName) {
+            if (selectedArrondissementLayer !== null) {
+                geojsonLayer.resetStyle(selectedArrondissementLayer);
+                selectedArrondissementLayer = null;
+            }
+            geojsonLayer.eachLayer(function(layer){
+               if(layer.feature.properties.NOM === arrondissementName){
+                 selectedArrondissementLayer = layer;
+                 layer.setStyle({
+                      fillColor: '#FF0000',
+                      weight: 2,
+                      opacity: 1,
+                      color: 'white',
+                      fillOpacity: 0.5
+                  });
+                 map.fitBounds(layer.getBounds()); 
+               }
+            });
+        }
+
+        // Load GeoJSON data
+        $.getJSON('/data/territoires.geojson', function (data) {
+            geojsonLayer = L.geoJSON(data, {
+                style: function (feature) {
+                    return {
+                        fillColor: '#ADD8E6',
+                        weight: 2,
+                        opacity: 1,
+                        color: 'white',
+                        fillOpacity: 0.7
+                    };
+                },
+                onEachFeature: function (feature, layer) {
+                  layer.on({
+                    mouseover: function (e) {
+                      layer.setStyle({
+                        weight: 5,
+                        color: '#666',
+                        fillOpacity: 0.9
+                      });
+                    },
+                    mouseout: function (e) {
+                      if (selectedArrondissementLayer === null || selectedArrondissementLayer != layer) {
+                            geojsonLayer.resetStyle(layer);
+                      } else {
+                           layer.setStyle({
+                               fillColor: '#FF0000',
+                               weight: 2,
+                               opacity: 1,
+                               color: 'white',
+                               fillOpacity: 0.5
+                           });
+                      }
+                    },
+                    click: function (e) {
+                      if (selectedArrondissementLayer !== null) {
+                        geojsonLayer.resetStyle(selectedArrondissementLayer);
+                      }
+                      selectedArrondissementLayer = layer;
+                      layer.setStyle({
+                        fillColor: '#FF0000',
+                        weight: 2,
+                        opacity: 1,
+                        color: 'white',
+                        fillOpacity: 0.5
+                      });
+                      $('#arrondissement').val(feature.properties.NOM);
+                      map.fitBounds(e.target.getBounds());
+                    }
+                  });
+                  arrondissements.push(feature.properties.NOM);
+
+                }
+            }).addTo(map);
+        
+            var select = $('#arrondissement');
+            select.empty();
+            select.append($('<option>', {
+                 value: "Tous",
+                 text: "Tous"
+            }));
+            arrondissements.sort().forEach(function (arrondissement) {
+                select.append($('<option>', {
+                    value: arrondissement,
+                    text: arrondissement
+                }));
+            });
+        });
+
+        $('#arrondissement').change(function () {
+            var selectedArrondissement = $(this).val();
+            if (selectedArrondissement === "Tous") {
+                if (selectedArrondissementLayer !== null) {
+                    geojsonLayer.resetStyle(selectedArrondissementLayer);
+                    selectedArrondissementLayer = null;
+                }
+                map.setView([45.5017, -73.5673], 10);
+            } else {
+                selectArrondissementByName(selectedArrondissement);
+            }
+        });
+
+        // Load Arrondissements from CSV
+        $.ajax({
+            type: "GET",
+            url: "/data/territoires.csv",
+            dataType: "text",
+            success: function (data) {
+                Papa.parse(data, {
+                    complete: function (results) {
+                        // Populate the table
+                        var tableBody = $('#myTable tbody');
+                        tableBody.empty();
+                        results.data.forEach(function (row) {
+                            if (row[0] && row[1] && row[2]) {
+                                var arrondissement = row[0];
+                                var code = row[1];
+                                var abbreviation = row[2];
+                                var newRow = `
+                                    <tr data-arrondissement="${arrondissement}">
+                                        <td>${arrondissement}</td>
+                                        <td>${code}</td>
+                                        <td>${abbreviation}</td>
+                                    </tr>
+                                `;
+                                tableBody.append(newRow);
+                            }
+                        });
+                        
+                        $('#myTable').DataTable();
+                        
+                        $('#myTable tbody').on('click', 'tr', function() {
+                            var arrondissement = $(this).data('arrondissement');
+                            $('#arrondissement').val(arrondissement);
+                            selectArrondissementByName(arrondissement);
+                        });
+                    }
+                });
+            }
+        });
+    });

@@ -55,50 +55,83 @@ const styles = {
     }),
   }),
 };
-
+const vProtege = document.querySelector("#vProtege");
+const vPartage = document.querySelector("#vPartage");
+const saison4 = document.querySelector("#btn-4saisons");
 function condition(feature) {
   let rac = ["EV", "PE", "TR"];
 
+  if (feature.getProperties().SAISONS4 !== "Oui" && saison4.checked) {
+    return null;
+  }
   if (rac.includes(feature.getProperties().REV_AVANCEMENT_CODE)) {
     return "REV";
   }
-
-  let tvc = [1, 3, 8, 9];
   const avancementCode = feature.getProperties().AVANCEMENT_CODE;
-  if (
-    tvc.includes(Number.parseInt(feature.getProperties().TYPE_VOIE_CODE)) &&
-    avancementCode == "E"
-  ) {
-    return "voie_partagee";
-  }
-  tvc = [4, 5, 6];
-
-  if (
-    !rac.includes(feature.getProperties().REV_AVANCEMENT_CODE) &&
-    avancementCode == "E" &&
-    tvc.includes(Number.parseInt(feature.getProperties().TYPE_VOIE_CODE))
-  ) {
-    return "voie_protegee";
-  }
-
   if (avancementCode == "E" && feature.getProperties().TYPE_VOIE_CODE == 7) {
     return "sentier_polyvalent";
   }
 
-  return "autre";
+  let tvc = [1, 3, 8, 9];
+  if (
+    (vPartage.checked && !vProtege.checked) ||
+    (vPartage.checked && vProtege.checked) ||
+    (!vPartage.checked && !vProtege.checked)
+  ) {
+    if (
+      tvc.includes(Number.parseInt(feature.getProperties().TYPE_VOIE_CODE)) &&
+      avancementCode == "E"
+    ) {
+      return "voie_partagee";
+    }
+  }
+
+  tvc = [4, 5, 6, 7];
+  if (
+    (!vPartage.checked && vProtege.checked) ||
+    (vPartage.checked && vProtege.checked) ||
+    (!vPartage.checked && !vProtege.checked)
+  ) {
+    if (
+      !rac.includes(feature.getProperties().REV_AVANCEMENT_CODE) &&
+      avancementCode == "E" &&
+      tvc.includes(Number.parseInt(feature.getProperties().TYPE_VOIE_CODE))
+    ) {
+      return "voie_protegee";
+    }
+  }
+
+  return null;
 }
 const styleFunction = function (feature) {
   return styles[condition(feature)];
 };
 
 const bikeRoutes = new ol.source.Vector({
-  url: `/itineraire/geo`,
+  url: `gti525/v1/pistes`,
   format: new ol.format.GeoJSON(),
 });
 
 const bikeRoutesLayer = new ol.layer.Vector({
   source: bikeRoutes,
   style: styleFunction,
+  geometryFunction: (feature) => {
+    const protege = [4, 5, 6, 7];
+    const partage = [1, 3, 8, 9];
+    if (vPartage.checked && vProtege.checked) {
+      return feature.getGeometry();
+    } else if (
+      vPartage.checked &&
+      protege.includes(Number.parseInt(feature.getProperties().TYPE_VOIE_CODE))
+    ) {
+      return null;
+    } else if (
+      vProtege.checked &&
+      partage.includes(Number.parseInt(feature.getProperties().TYPE_VOIE_CODE))
+    ) {
+      return null;
+    }
+  },
 });
 
 map.addLayer(bikeRoutesLayer);
@@ -111,3 +144,22 @@ var myModal = new bootstrap.Modal(document.getElementById("myModal"));
 document.getElementById("popupIcon").addEventListener("click", () => {
   myModal.show();
 });
+
+vPartage.addEventListener("change", (e) => {
+  console.log(bikeRoutesLayer);
+  bikeRoutesLayer.changed();
+});
+vProtege.addEventListener("change", (e) => {
+  bikeRoutesLayer.changed();
+});
+saison4.addEventListener("change", () => {
+  bikeRoutesLayer.changed();
+});
+document.querySelector("#btn-saisonnier").addEventListener("change", () => {
+  bikeRoutesLayer.changed();
+});
+// document.getElementsByName("vProtege").forEach((e) => {
+//   e.addEventListener("change", () => {
+
+//   });
+// });

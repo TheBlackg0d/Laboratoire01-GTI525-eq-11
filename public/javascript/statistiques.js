@@ -129,7 +129,9 @@ document.querySelectorAll(".btn-compteur").forEach((e) => {
 var chartObj = undefined;
 function chart(x, y) {
   const ctx = document.getElementById("statsCharts");
-
+  if (chartObj) {
+    chartObj.destroy();
+  }
   chartObj = new Chart(ctx, {
     type: "bar",
     data: {
@@ -171,7 +173,6 @@ document.querySelector("#getChart").addEventListener("click", () => {
       console.log(data);
       const x = data.compteurs.map((item) => item._id);
       const y = data.compteurs.map((item) => item.totalPassage);
-      chartObj.destroy();
       chart(x, y);
     });
   });

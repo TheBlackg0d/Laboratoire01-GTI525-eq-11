@@ -1,0 +1,272 @@
+[{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a017a"
+  },
+  "nom": "Mont-Royal",
+  "codeID": "12",
+  "abrev": "MR"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a017b"
+  },
+  "nom": "Saint-Léonard",
+  "codeID": "6",
+  "abrev": "LN"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a017c"
+  },
+  "nom": "Plateau-Mont-Royal",
+  "codeID": "15",
+  "abrev": "PM"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a017d"
+  },
+  "nom": "Le Sud-Ouest",
+  "codeID": "14",
+  "abrev": "SO"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a017e"
+  },
+  "nom": "Saint-Laurent",
+  "codeID": "7",
+  "abrev": "LR"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a017f"
+  },
+  "nom": "Beaconsfield",
+  "codeID": "25",
+  "abrev": "BF"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0180"
+  },
+  "nom": "Outremont",
+  "codeID": "23",
+  "abrev": "OM"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0181"
+  },
+  "nom": "Côte-des-Neiges-Notre-Dame-de-Grâce",
+  "codeID": "20",
+  "abrev": "CN"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0182"
+  },
+  "nom": "L'Île-Bizard-Sainte-Geneviève",
+  "codeID": "24",
+  "abrev": "IS"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0183"
+  },
+  "nom": "Dorval",
+  "codeID": "1",
+  "abrev": "DV"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0184"
+  },
+  "nom": "Pointe-Claire",
+  "codeID": "33",
+  "abrev": "PC"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0185"
+  },
+  "nom": "Montréal-Ouest",
+  "codeID": "30",
+  "abrev": "MO"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0186"
+  },
+  "nom": "Montréal-Nord",
+  "codeID": "8",
+  "abrev": "MN"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0187"
+  },
+  "nom": "Lachine",
+  "codeID": "9",
+  "abrev": "LC"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0188"
+  },
+  "nom": "Mercier-Hochelaga-Maisonneuve",
+  "codeID": "16",
+  "abrev": "MH"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0189"
+  },
+  "nom": "Ville-Marie",
+  "codeID": "13",
+  "abrev": "VM"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a018a"
+  },
+  "nom": "Westmount",
+  "codeID": "22",
+  "abrev": "WM"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a018b"
+  },
+  "nom": "LaSalle",
+  "codeID": "10",
+  "abrev": "LS"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a018c"
+  },
+  "nom": "Ahuntsic-Cartierville",
+  "codeID": "17",
+  "abrev": "AC"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a018d"
+  },
+  "nom": "Rivière-des-Prairies-Pointe-aux-Trembles",
+  "codeID": "11",
+  "abrev": "RP"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a018e"
+  },
+  "nom": "Montréal-Est",
+  "codeID": "29",
+  "abrev": "ME"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a018f"
+  },
+  "nom": "Kirkland",
+  "codeID": "21",
+  "abrev": "KL"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0190"
+  },
+  "nom": "Villeray-Saint-Michel-Parc-Extension",
+  "codeID": "19",
+  "abrev": "VS"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0191"
+  },
+  "nom": "Baie-d'Urfé",
+  "codeID": "26",
+  "abrev": "BU"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0192"
+  },
+  "nom": "Senneville",
+  "codeID": "32",
+  "abrev": "SV"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0193"
+  },
+  "nom": "L'Île-Dorval",
+  "codeID": "28",
+  "abrev": "ID"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0194"
+  },
+  "nom": "Pierrefonds-Roxboro",
+  "codeID": "5",
+  "abrev": "PR"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0195"
+  },
+  "nom": "Sainte-Anne-de-Bellevue",
+  "codeID": "31",
+  "abrev": "BV"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0196"
+  },
+  "nom": "Rosemont-La Petite-Patrie",
+  "codeID": "18",
+  "abrev": "RO"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0197"
+  },
+  "nom": "Côte-Saint-Luc",
+  "codeID": "27",
+  "abrev": "CL"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0198"
+  },
+  "nom": "Verdun",
+  "codeID": "4",
+  "abrev": "VD"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a0199"
+  },
+  "nom": "Hampstead",
+  "codeID": "2",
+  "abrev": "HS"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a019a"
+  },
+  "nom": "Dollard-Des Ormeaux",
+  "codeID": "3",
+  "abrev": "DO"
+},
+{
+  "_id": {
+    "$oid": "67d0d737bf9deb758a7a019b"
+  },
+  "nom": "Anjou",
+  "codeID": "34",
+  "abrev": "AJ"
+}]

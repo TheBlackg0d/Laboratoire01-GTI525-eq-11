@@ -11,6 +11,32 @@ export class CompteurRouter {
     this.init();
   }
 
+  public get router() {
+    return this._router;
+  }
+
+  async readAll(req: Request, res: Response, next: NextFunction) {
+    const limit = req.query.limite as string;
+    const page = req.query.page as string;
+    const implentation = req.query.implantation as string;
+    const nom = req.query.nom as string;
+    const compteurs = await this.compteurController.readAllWithFilter(
+      implentation,
+      nom,
+      Number(limit),
+      Number(page)
+    );
+    return res.status(200).json({ compteurs });
+  }
+
+  async readById(req: Request, res: Response, next: NextFunction) {
+    const compteur = await this.compteurController.findById(
+      Number(req.params.id)
+    );
+
+    return res.status(200).json({ compteur });
+  }
+
   async readByIdAndDate(req: Request, res: Response, next: NextFunction) {
     try {
       const { compteurId } = req.params;
@@ -46,12 +72,13 @@ export class CompteurRouter {
     }
   }
 
-  get router() {
-    return this._router;
-  }
-
-  init() {
-    this._router.get("/compteurs/:compteurId", this.readByIdAndDate.bind(this));
+  public init() {
+    this._router.get("/compteurs", this.readAll.bind(this));
+    this._router.get("/compteurs/:id", this.readById.bind(this));
+    this._router.get(
+      "/compteurs/:compteurId/passages",
+      this.readByIdAndDate.bind(this)
+    );
   }
 }
 

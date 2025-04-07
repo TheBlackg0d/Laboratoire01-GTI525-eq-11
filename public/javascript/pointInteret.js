@@ -1,6 +1,6 @@
 let dataTable;
 const deletePoint = async (id) => {
-  const res = await fetch("pointInteret/delete/" + id, {
+  const res = await fetch("/pointInteret/delete/" + id, {
     method: "DELETE",
   });
 
@@ -8,12 +8,12 @@ const deletePoint = async (id) => {
 };
 
 const getPointInteret = async (id) => {
-  const res = await fetch("pointInteret/" + id);
+  const res = await fetch("/pointInteret/" + id);
 
   return res.json();
 };
 const getPointInteretInArea = async (id) => {
-  const res = await fetch("pointInteret/allAreaPoints/" + id);
+  const res = await fetch("/pointInteret/allAreaPoints/" + id);
   const json = await res.json();
   return json;
 };
@@ -25,7 +25,7 @@ const updatePointInteret = async (id) => {
     var object = {};
     formData.forEach((value, key) => (object[key] = value));
     var json = JSON.stringify(object);
-    const res = await fetch("pointInteret/update/" + id, {
+    const res = await fetch("/pointInteret/update/" + id, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: json,

@@ -233,18 +233,19 @@ export class PointInteretRouter {
   }
 
   init() {
-    this._router.get("/stats", this.getStatData.bind(this));
-    this._router.get("/ajouter", this.ajouterInteret.bind(this));
-    this._router.get("/pointsdinteret/All", this.getAllPointInteret.bind(this));
-    this._router.post("/create", this.createPointInteret.bind(this));
-    this._router.delete("/delete/:id", this.deletePointInteret.bind(this));
-    // this._router.get("/:id", this.getPointInteret.bind(this));
-    this._router.post("/update/:id", this.updatePointInteret.bind(this));
-    this._router.get("/allAreaPoints/:id", this.getAllPointsInArea.bind(this));
+    this._router.get("/", this.getStatData.bind(this));
     this._router.get(
       "/pointsdinteret",
       this.getFilteredPointInteret.bind(this)
     );
+
+    this._router.get("/ajouter", this.ajouterInteret.bind(this));
+    this._router.get("/pointsdinteret/All", this.getAllPointInteret.bind(this));
+    this._router.post("/create", this.createPointInteret.bind(this));
+    this._router.delete("/delete/:id", this.deletePointInteret.bind(this));
+    this._router.get("/:id", this.getPointInteret.bind(this));
+    this._router.post("/update/:id", this.updatePointInteret.bind(this));
+    this._router.get("/allAreaPoints/:id", this.getAllPointsInArea.bind(this));
 
     this._router.get(
       "/pointsdinteret/:id",

@@ -1,33 +1,7 @@
-import Compteur from "../Models/Compteur";
+import mongoose from "mongoose";
 import Passage from "../Models/Passage";
-export class CompteurController {
-  async readAll() {
-    return Compteur.find();
-  }
 
-  async findById(id: number) {
-    return Compteur.find({ ID: id });
-  }
-
-  async readAllWithFilter(
-    implentation: string,
-    nom: string,
-    limit: number,
-    page: number
-  ) {
-    const filter: any = {};
-    if (implentation) {
-      filter.Annee_implante = Number(implentation);
-    }
-    if (nom) {
-      filter.Nom = { $regex: nom };
-    }
-
-    return Compteur.find(filter)
-      .limit(limit)
-      .skip(page * limit);
-  }
-
+export class PassageController {
   async readByCompteurIdAndGroupByDay(
     compteurId: number,
     debutDate: string,

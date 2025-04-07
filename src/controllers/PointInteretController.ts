@@ -24,4 +24,33 @@ export default class PointInteretController {
   async getAllFontaine() {
     return Fontaines.find();
   }
+
+  async getFontaineById(id: number) {
+    return Fontaines.find({ ID: id });
+  }
+
+  async getFilteredFontaines(
+    limite: number,
+    page: number,
+    type: string,
+    territoire: string,
+    nom: string
+  ) {
+    const filter: any = {};
+    if (type) {
+      filter.type = type;
+    }
+
+    if (nom) {
+      filter.Nom = { $regex: nom };
+    }
+
+    if (territoire) {
+      filter.territoire = territoire;
+    }
+
+    return Fontaines.find(filter)
+      .limit(limite)
+      .skip(page * limite);
+  }
 }

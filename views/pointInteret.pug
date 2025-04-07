@@ -27,7 +27,7 @@ html
                       .col-6
                           label(for="arrondissement") Arrondissement
                       .col-6
-                          select(name="arrondissement", id="arrondissement").form-select.select-1
+                          select(name="arrondissement", id="arrondissement" onchange="filterPointsOfInterest()").form-select.select-1
                               option(value="Tous") Tous
                               each territoire in territoires
                                 -var a = territoire
@@ -36,7 +36,8 @@ html
                       .col-6
                           label(for="typeDeLieu") Type de lieu:
                       .col-6
-                          select(name="typeDeLieu", id="TypeDeLieu").form-select.select-1
+                          select(name="typeDeLieu", id="TypeDeLieu" onchange="filterPointsOfInterest()").form-select.select-1
+                              option(value="Tous") Tous
                               option(value="Fontaine à boire") Fontaine à boire
                               option(value="Atelier de réparation vélo") Atelier de réparation vélo
         .sectionTable
@@ -134,6 +135,5 @@ html
 script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
 script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js")
 script(src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js")
-script(src="/javascript/pointInteret.js") 
+script(src="/javascript/pointInteret.js")
 
-   

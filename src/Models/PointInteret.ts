@@ -50,7 +50,7 @@ const pointInteretSchema: Schema = new Schema(
 );
 
 export default mongoose.model<IPointInteretModel>(
-  "PointInteret",
+  "Point_dinteret",
   pointInteretSchema,
-  "pointInteret"
+  "point_dinteret"
 );

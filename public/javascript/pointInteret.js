@@ -1,4 +1,13 @@
 let dataTable;
+let selectedArrondissementLayer;
+let geojsonLayer;
+// Initialize map
+var map = L.map("map").setView([45.5017, -73.5673], 10);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+}).addTo(map);
+
 const deletePoint = async (id) => {
   const res = await fetch("pointInteret/delete/" + id, {
     method: "DELETE",
@@ -39,6 +48,63 @@ function searchDataTable() {
   dataTable.search(searchData).draw();
 }
 
+function selectArrondissementByName(arrondissementName) {
+  if (selectedArrondissementLayer !== null) {
+    geojsonLayer.resetStyle(selectedArrondissementLayer);
+    selectedArrondissementLayer = null;
+  }
+
+  geojsonLayer.eachLayer(function (layer) {
+    if (layer.feature.properties.CODEID === Number(arrondissementName)) {
+      selectedArrondissementLayer = layer;
+      layer.setStyle({
+        fillColor: "#FF0000",
+        weight: 2,
+        opacity: 1,
+        color: "white",
+        fillOpacity: 0.5,
+      });
+      map.fitBounds(layer.getBounds());
+    }
+  });
+}
+
+const filterPointsOfInterest = async () => {
+  const arrondissement = document.querySelector("#arrondissement").value;
+  const typeDeLieu = document.querySelector("#TypeDeLieu").value;
+
+  const queryParams = new URLSearchParams();
+  if (arrondissement !== "Tous") queryParams.append("arrondissement", arrondissement);
+  if (typeDeLieu !== "Tous") queryParams.append("typeDeLieu", typeDeLieu);
+
+  const res = await fetch(`gti525/v1/pointsdinteret?${queryParams.toString()}`);
+
+  const data = await res.json();
+
+  // Update the table with the filtered data
+  dataTable.clear();
+  data.pointInteret.forEach((point) => {
+    dataTable.row.add([
+      point.type || "",
+      point.Arrondissement || "",
+      point.Nom_parc_lieu || "",
+      point.Intersection || "",
+    ]);
+  });
+  dataTable.draw();
+
+  // Update the map if arrondissement is selected
+  if (arrondissement !== "Tous") {
+    selectArrondissementByName(arrondissement);
+  } else {
+    if (selectedArrondissementLayer !== null) {
+      geojsonLayer.resetStyle(selectedArrondissementLayer);
+      selectedArrondissementLayer = null;
+    }
+    map.setView([45.5017, -73.5673], 10);
+  }
+};
+
 $(function () {
   dataTable = $("#myTable").DataTable({
     order: [], // Default no ordering
@@ -49,36 +115,6 @@ $(function () {
     lengthMenu: [20, 50, 75, 100],
     searching: true,
   });
-  // Initialize map
-  var map = L.map("map").setView([45.5017, -73.5673], 10);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
-  var geojsonLayer;
-  var selectedArrondissementLayer = null;
-  // var arrondissements = [];
-
-  function selectArrondissementByName(arrondissementName) {
-    if (selectedArrondissementLayer !== null) {
-      geojsonLayer.resetStyle(selectedArrondissementLayer);
-      selectedArrondissementLayer = null;
-    }
-
-    geojsonLayer.eachLayer(function (layer) {
-      if (layer.feature.properties.CODEID === Number(arrondissementName)) {
-        selectedArrondissementLayer = layer;
-        layer.setStyle({
-          fillColor: "#FF0000",
-          weight: 2,
-          opacity: 1,
-          color: "white",
-          fillOpacity: 0.5,
-        });
-        map.fitBounds(layer.getBounds());
-      }
-    });
-  }
 
   // Load GeoJSON data
   $.getJSON("/gti525/v1/territoire/geojson", function (data) {
@@ -142,17 +178,11 @@ $(function () {
     }).addTo(map);
 
     $("#arrondissement").on("change", function () {
-      var selectedArrondissement = $(this).val();
-      if (selectedArrondissement === "Tous") {
-        if (selectedArrondissementLayer !== null) {
-          geojsonLayer.resetStyle(selectedArrondissementLayer);
-          selectedArrondissementLayer = null;
-        }
-        map.setView([45.5017, -73.5673], 10);
-      } else {
-        selectArrondissementByName(selectedArrondissement);
-      }
-      searchDataTable();
+      filterPointsOfInterest();
+    });
+
+    $("#TypeDeLieu").on("change", function () {
+      filterPointsOfInterest();
     });
   });
 

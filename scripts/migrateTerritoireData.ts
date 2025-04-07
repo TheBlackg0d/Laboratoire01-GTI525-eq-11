@@ -47,6 +47,8 @@ async function migrateTerritoireData() {
         abrev: feature.properties.ABREV,
         codeID: feature.properties.CODEID,
         nom: feature.properties.NOM,
+        codeMAMH: feature.properties.CODEMAMH,
+        num: feature.properties.NUM,
         type: feature.properties.TYPE,
         comment: feature.properties.COMMENT || null,
         dateModif: feature.properties.DATEMODIF,

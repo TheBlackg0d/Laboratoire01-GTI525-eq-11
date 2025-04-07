@@ -20,6 +20,9 @@ export interface IPointInteret {
   Latitude: number;
   type: string;
   Remarque: string;
+  DispoDate: Date;
+
+  codePostal: string;
 }
 
 export interface IPointInteretModel extends IPointInteret, Document {}
@@ -27,6 +30,8 @@ export interface IPointInteretModel extends IPointInteret, Document {}
 const pointInteretSchema: Schema = new Schema(
   {
     Arrondissement: { type: String, required: true },
+    codePostal: { type: String, required: true },
+    DispoDate: { type: Date, required: true },
     Remarque: { type: String, required: false, default: "none" },
     type: { type: String, required: true },
     Nom_parc_lieu: { type: String, required: true },

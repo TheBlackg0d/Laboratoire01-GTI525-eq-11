@@ -12,6 +12,24 @@ const getPointInteret = async (id) => {
 
   return res.json();
 };
+const updatePointInteret = async (id) => {
+  try {
+    const form = document.querySelector("#formPointInteret");
+    const formData = new FormData(form);
+    console.log("hello", form);
+    var object = {};
+    formData.forEach((value, key) => (object[key] = value));
+    var json = JSON.stringify(object);
+    const res = await fetch("pointInteret/update/" + id, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: json,
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 function searchDataTable() {
   let searchData = $("#arrondissement :selected").text();
 
@@ -170,19 +188,41 @@ $(function () {
     if (id !== undefined) {
       getPointInteret(id).then((res) => {
         console.log(res);
-        console.log(res.result);
-        $("NomDuLieu").val(res.result.Nom_parc_lieu);
-        $("#Addresse").val(res.result.Intersection);
+        console.log(res.result.Nom_parc_lieu);
+        $("#NomDuLieu").val(res.result.Nom_parc_lieu);
+        $("#Adresse").val(res.result.Intersection);
         $("#arrondissementForm").val(res.result.Arrondissement);
         $("#TypeDeLieuForm").val(res.result.type);
         $("#latitude").val(res.result.Latitude);
         $("#longitude").val(res.result.Longitude);
         $("#Remarque").val(res.result.Remarque);
+        $("#dispoDate").val(res.result.DispoDate.split("T")[0]);
+        $("#codePostale").val(res.result.codePostal);
 
         myModal.show();
       });
     }
   });
+
+  document
+    .querySelector("#updatePointInteret")
+    .addEventListener("click", () => {
+      const id = $(dataTable.row(".selected").node()).data("id");
+      if (id !== undefined) {
+        updatePointInteret(id).then((res) => {
+          if (res.message == "success") {
+            myModal.hide();
+            newData = [
+              res.pointInteret.type,
+              res.pointInteret.Arrondissement,
+              res.pointInteret.Nom_parc_lieu,
+              res.pointInteret.Intersection,
+            ]; //Array, data here must match structure of table data
+            dataTable.row(".selected").data(newData).draw();
+          }
+        });
+      }
+    });
 
   document.querySelector("#MenuBtn").addEventListener("click", () => {
     $(".group-button").toggle();

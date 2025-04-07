@@ -74,7 +74,7 @@ export class PointInteretRouter {
       dispoDate,
       typeDeLieu,
       longitude,
-      lagitude,
+      latitude,
       Remarque,
     } = req.body;
     try {
@@ -83,10 +83,12 @@ export class PointInteretRouter {
           Intersection: Adresse,
           Nom_parc_lieu: NomDuLieu,
           Longitude: longitude,
-          Lagitude: lagitude,
+          Latitude: latitude,
           type: typeDeLieu,
           Arrondissement: arrondissementForm,
           Remarque,
+          codePostal: codePostale,
+          DispoDate: dispoDate,
         }
       );
       res.json({ message: "success", pointInteret });
@@ -125,6 +127,44 @@ export class PointInteretRouter {
     }
   }
 
+  public async updatePointInteret(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const {
+        Adresse,
+        NomDuLieu,
+        arrondissementForm,
+        codePostale,
+        dispoDate,
+        typeDeLieu,
+        longitude,
+        latitude,
+        Remarque,
+      } = req.body;
+      const id = req.params.id;
+      const pointInteret = await this.controllerPointInteret.update(
+        {
+          Intersection: Adresse,
+          Nom_parc_lieu: NomDuLieu,
+          Longitude: longitude,
+          Latitude: latitude,
+          type: typeDeLieu,
+          Arrondissement: arrondissementForm,
+          Remarque,
+          codePostal: codePostale,
+          DispoDate: dispoDate,
+        },
+        id
+      );
+
+      res.status(200).json({ message: "success", pointInteret });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
   get controllerPointInteret() {
     return this.pointInteretController;
   }
@@ -140,6 +180,7 @@ export class PointInteretRouter {
     this._router.post("/create", this.createPointInteret.bind(this));
     this._router.delete("/delete/:id", this.deletePointInteret.bind(this));
     this._router.get("/:id", this.getPointInteret.bind(this));
+    this._router.post("/update/:id", this.updatePointInteret.bind(this));
   }
 }
 

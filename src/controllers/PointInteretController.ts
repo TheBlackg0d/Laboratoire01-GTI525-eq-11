@@ -31,4 +31,16 @@ export default class PointInteretController {
   async getPointInteret(id: string) {
     return PointInteret.findById(id);
   }
+
+  async update(params: object, id: string) {
+    const pointInteret = await PointInteret.findById(id);
+
+    if (pointInteret) {
+      pointInteret.set(params);
+
+      return pointInteret.save();
+    } else {
+      throw Error("Not Found");
+    }
+  }
 }

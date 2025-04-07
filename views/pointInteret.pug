@@ -77,56 +77,56 @@ html
             </div>
             <div class="modal-body body-charts">
               form(action="" id="formPointInteret")
-              .row 
-                .col-md-12 
-                  <label for="NomDuLieu" class="form-label">Nom du lieu</label>
-                  <input type="text" class="form-control" id="NomDuLieu" name="NomDuLieu" placeholder="Fontaine à boire, atelier de réparation vélo" required>
-              .row 
-                <div class="col-md-9">
-                  <label for="Adresse" class="form-label">Adresse</label>
-                  <input type="text" class="form-control" id="Adresse"  name="Adresse" placeholder="1234 rue Montagne de L'erable, unte 321...." required>
-                </div>
-                
-                <div class="col-md-3">
-                  <label for="codePostale" class="form-label">Code Postal</label>
-                  <input type="text" class="form-control" id="codePostale" name="codePostale" placeholder="HJ0 3E1" required>
-                </div>
-              .row 
-                .col-md-8 
-                  <label for="arrondissementForm" class="form-label">Arrondissement</label>
-                  select(name="arrondissementForm", id="arrondissementForm" required).form-select.select-1
-                      <option value="" disabled selected>Choisissez l'arrondissement</option>
-                      each territoire in territoires
-                        -var a = territoire
-                        option(value=a.nom) #{a.nom} 
-                .col-md-4 
-                  label(for="dispoDate" class="form-label") Disponible depuis
-                  input(type="date" id="dispoDate", placeholder="Année d'implentation" name="dispoDate" class="form-control" required) 
-              .row 
-                <div class="col-md-6">
-                  <label for="TypeDeLieu" class="form-label">Type du lieu</label>
-                  select(name="typeDeLieu", id="TypeDeLieuForm" ).form-select.select-1
-                                option(value="Fontaine à boire" selected) Fontaine à boire
-                                option(value="Atelier de réparation vélo") Atelier de réparation vélo
-                </div>
-  
-                <div class="col-md-3" id="lagitudeContainer">
-                  <label for="lagitude" class="form-label">Lagitude</label>
-                  <input type="text" class="form-control" id="lagitude" name="lagitude" placeholder="45.5009">
-                </div>
-                <div class="col-md-3" id="longitudeContainer">
-                  <label for="longitude" class="form-label">Longitude</label>
-                  <input type="text" class="form-control" id="longitude" name="longitude" placeholder="-73.58781">
-                </div>
-              .row 
-                <div class="col-md-12">
-                  <label for="Remarque" class="form-label">Remarque</label>
-                  textArea(type="text" class="form-control" id="Remarque" name="Remarque" placeholder="Proche de plusieur restaurant")
-                </div>
+                .row 
+                  .col-md-12 
+                    <label for="NomDuLieu" class="form-label">Nom du lieu</label>
+                    <input type="text" class="form-control" id="NomDuLieu" name="NomDuLieu" placeholder="Fontaine à boire, atelier de réparation vélo" required>
+                .row 
+                  <div class="col-md-9">
+                    <label for="Adresse" class="form-label">Adresse</label>
+                    <input type="text" class="form-control" id="Adresse"  name="Adresse" placeholder="1234 rue Montagne de L'erable, unte 321...." required>
+                  </div>
+                  
+                  <div class="col-md-3">
+                    <label for="codePostale" class="form-label">Code Postal</label>
+                    <input type="text" class="form-control" id="codePostale" name="codePostale" placeholder="HJ0 3E1" required>
+                  </div>
+                .row 
+                  .col-md-8 
+                    <label for="arrondissementForm" class="form-label">Arrondissement</label>
+                    select(name="arrondissementForm", id="arrondissementForm" required).form-select.select-1
+                        <option value="" disabled selected>Choisissez l'arrondissement</option>
+                        each territoire in territoires
+                          -var a = territoire
+                          option(value=a.nom) #{a.nom} 
+                  .col-md-4 
+                    label(for="dispoDate" class="form-label") Disponible depuis
+                    input(type="date" id="dispoDate", placeholder="Année d'implentation" name="dispoDate" class="form-control" required) 
+                .row 
+                  <div class="col-md-6">
+                    <label for="TypeDeLieu" class="form-label">Type du lieu</label>
+                    select(name="typeDeLieu", id="TypeDeLieuForm" ).form-select.select-1
+                                  option(value="Fontaine à boire" selected) Fontaine à boire
+                                  option(value="Atelier de réparation vélo") Atelier de réparation vélo
+                  </div>
+    
+                  <div class="col-md-3" id="lagitudeContainer">
+                    <label for="lagitude" class="form-label">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" name="latitude" placeholder="45.5009">
+                  </div>
+                  <div class="col-md-3" id="longitudeContainer">
+                    <label for="longitude" class="form-label">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" name="longitude" placeholder="-73.58781">
+                  </div>
+                .row 
+                  <div class="col-md-12">
+                    <label for="Remarque" class="form-label">Remarque</label>
+                    textArea(type="text" class="form-control" id="Remarque" name="Remarque" placeholder="Proche de plusieur restaurant")
+                  </div>
             
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              button(id='getChart' class="btn btn-primary") update
+              button(id='updatePointInteret' class="btn btn-primary") update
             </div>
           </div>
         </div>

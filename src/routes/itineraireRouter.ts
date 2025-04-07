@@ -24,21 +24,21 @@ export class ItineraireRouter {
   // New method to handle all pistes requests with filtering
   public async getPistes(req: Request, res: Response, next: NextFunction) {
     try {
-      const { populaireDebut, populaireFin } = req.query;
-      
+      const { start, end } = req.query;
+
       let data;
-      
+
       // If popularity filter is requested
-      if (populaireDebut) {
+      if (start || end) {
         data = await this.itineraireController.getPopularPistes(
-          populaireDebut as string,
-          populaireFin as string
+          start as string,
+          end as string
         );
       } else {
         // Get all pistes
         data = await this.itineraireController.getAllPistes();
       }
-      
+
       res.json(data);
     } catch (err) {
       console.error("Error in getting pistes: ", err);
@@ -77,10 +77,8 @@ export class ItineraireRouter {
   }
 
   init() {
-    // Original endpoint for backward compatibility
     this._router.get("/pistes", this.getPistes.bind(this));
     
-    // New API endpoint for getting all pistes with filters
     this._router.get("/pistes/:id", this.getPisteById.bind(this));
 
     this._router.get("/geojson", this.getGeoData.bind(this));

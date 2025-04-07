@@ -140,6 +140,19 @@ bikeRoutesLayer.once("featuresloadend", function () {
   map.getView().fit(bikeRoutesLayer.getExtent());
 });
 
+function updateMapWithDates() {
+  const start = document.querySelector("#start").value;
+  const end = document.querySelector("#end").value;
+
+  bikeRoutes.clear();
+  bikeRoutes.setUrl(`gti525/v1/pistes?start=${start}&end=${end}`);
+  map.getLayers().forEach(layer => {
+    if (layer instanceof ol.layer.Vector) {
+      layer.getSource().refresh();
+    }
+  });
+}
+
 var myModal = new bootstrap.Modal(document.getElementById("myModal"));
 document.getElementById("popupIcon").addEventListener("click", () => {
   myModal.show();

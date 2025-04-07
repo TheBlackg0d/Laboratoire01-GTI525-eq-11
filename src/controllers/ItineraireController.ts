@@ -46,14 +46,14 @@ export default class ItineraireController {
   }
 
   // Get popular pistes based on date range
-  async getPopularPistes(dateDebut: string, dateFin?: string) {
+  async getPopularPistes(start?: string, end?: string) {
     try {
-      // Parse dates
-      const startDate = new Date(dateDebut.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+      const startDate = start 
+      ? new Date(start.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')) 
+      : new Date('2019-01-01');
       
-      // If dateFin is not provided, use current date
-      const endDate = dateFin 
-        ? new Date(dateFin.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')) 
+      const endDate = end 
+        ? new Date(end.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')) 
         : new Date();
       
       // Get popularity data
@@ -74,7 +74,7 @@ export default class ItineraireController {
           $sort: { totalPassages: -1 }
         },
         {
-          $limit: 10 // Get top 10 most popular
+          $limit: 3 // Get top 3 most popular
         }
       ]);
       

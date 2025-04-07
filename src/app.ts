@@ -8,21 +8,17 @@ import { config } from "./config/db";
 import { TRouter } from "./routes/TerritoireRouter";
 import { apiRouter } from "./routes/ApiRouter";
 import { IRouter } from "./routes/itineraireRouter";
-
+const autiIncrement = require("mongoose-id-autoincrement");
 class App {
   public expressApp: express.Application;
 
   constructor() {
     this.expressApp = express();
     console.log(config.mongo.url);
-    mongoose
-      .connect(config.mongo.url, { retryWrites: true, w: "majority" })
-      .then(() => {
-        console.log("connected");
-      })
-      .catch((error) => {
-        console.log("error connection failed");
-      });
+    const db = mongoose.connect(config.mongo.url, {
+      retryWrites: true,
+      w: "majority",
+    });
     // this.middleware() //  For middleware implementation
     this.middleware();
     this.routes(); // For routes implementation

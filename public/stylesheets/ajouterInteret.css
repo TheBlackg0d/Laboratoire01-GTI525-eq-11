@@ -12,6 +12,9 @@ main {
   flex-direction: column;
   flex: 1;
 }
+.hr {
+  width: 100%;
+}
 .heading-point-interet {
   margin-bottom: 30px;
 }
@@ -21,7 +24,6 @@ main {
 .sub-heading-point-interet {
   margin-bottom: 30px;
 }
-
 .select-1 {
   font-size: inherit;
 }
@@ -29,27 +31,19 @@ main {
 .lieu-container {
   margin-top: 1rem;
 }
-.img-google-map {
-  width: 40rem;
-  height: 20rem;
-  object-fit: cover;
-  margin-bottom: 4rem;
-}
 
-.sectionTable {
+.section2 {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
   margin: 20px;
   width: 100%;
   align-content: center;
 }
-#myTable_filter {
-  display: none;
-}
-.container-btn {
+.button-form {
   display: flex;
   justify-content: end;
-  gap: 2rem;
 }
-
-.group-button {
-  display: none;
+.btn-annuler {
+  margin-right: 2rem;
 }

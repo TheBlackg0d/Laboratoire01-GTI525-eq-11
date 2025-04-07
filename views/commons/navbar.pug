@@ -11,9 +11,12 @@ nav.navbar.navbar-expand-sm.navigation
     li.nav-item
       a.nav-link(href="/statistique") Statistiques
     li.nav-item
-      .sectionInteret
-        a.nav-link(href="/pointInteret") Points d'interet
-        span: img.arrow-image(src="/images/down-arrow-head.svg", alt="arrow")
+      .dropdown
+        .sectionInteret
+          a.nav-link(href="/pointInteret") Points d'interet
+          span: img.arrow-image(src="/images/down-arrow-head.svg", alt="arrow")
+        .dropdown-content
+          a(href=href="/pointInteret/ajouter") Ajouter
   ul.navbar-nav.account
     li
       a: img(src="/images/account.svg" alt="logo-account")

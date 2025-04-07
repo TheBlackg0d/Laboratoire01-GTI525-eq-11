@@ -11,6 +11,7 @@
     "watch": "jest --watch --coverage",
     "test": "jest --colors --coverage",
     "migrate:pistes": "ts-node scripts/migratePisteData.ts",
+    "migrate:territoires": "ts-node scripts/migrateTerritoireData.ts",
     "generate:popularity": "ts-node scripts/generatePopularityData.ts"
   },
   "nodemonConfig": {

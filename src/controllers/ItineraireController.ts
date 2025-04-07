@@ -66,29 +66,32 @@ export default class ItineraireController {
         },
         {
           $group: {
-            _id: "$pisteId",
+            _id: "$NOM_ARR_VILLE_CODE",
+            pisteIds: { $push: "$pisteId" },
             totalPassages: { $sum: "$totalPassages" }
           }
         },
         {
-          $sort: { totalPassages: -1 }
+          $sort: { 
+            "totalPassages": -1 
+          }
         },
         {
           $limit: 3 // Get top 3 most popular
         }
       ]);
       
-      // Get actual piste data for the popular ones
-      const pisteIds = popularPistes.map(item => item._id);
+      // Flatten pisteIds for querying actual piste data
+      const pisteIds = popularPistes.flatMap(item => item.pisteIds);
       const pistes = await PisteCyclable.find({ "properties.ID_CYCL": { $in: pisteIds } });
       
       // Sort the pistes based on popularity
       const sortedPistes = pistes.sort((a, b) => {
         const aPopularity = popularPistes.find(
-          item => item._id === a.properties.ID_CYCL
+          item => item.pisteIds.includes(a.properties.ID_CYCL)
         )?.totalPassages || 0;
         const bPopularity = popularPistes.find(
-          item => item._id === b.properties.ID_CYCL
+          item => item.pisteIds.includes(b.properties.ID_CYCL)
         )?.totalPassages || 0;
         return bPopularity - aPopularity;
       });

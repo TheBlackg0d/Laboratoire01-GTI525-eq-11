@@ -24,15 +24,15 @@ export class ItineraireRouter {
   // New method to handle all pistes requests with filtering
   public async getPistes(req: Request, res: Response, next: NextFunction) {
     try {
-      const { start, end } = req.query;
+      const { populaireDebut, populaireFin } = req.query;
 
       let data;
 
       // If popularity filter is requested
-      if (start || end) {
+      if (populaireDebut || populaireFin) {
         data = await this.itineraireController.getPopularPistes(
-          start as string,
-          end as string
+          populaireDebut as string,
+          populaireFin as string
         );
       } else {
         // Get all pistes

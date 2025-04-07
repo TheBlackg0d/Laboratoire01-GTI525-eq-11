@@ -141,11 +141,11 @@ bikeRoutesLayer.once("featuresloadend", function () {
 });
 
 function updateMapWithDates() {
-  const start = document.querySelector("#start").value;
-  const end = document.querySelector("#end").value;
+  const start = document.querySelector("#populaireDebut").value;
+  const end = document.querySelector("#populaireFin").value;
 
   bikeRoutes.clear();
-  bikeRoutes.setUrl(`gti525/v1/pistes?start=${start}&end=${end}`);
+  bikeRoutes.setUrl(`gti525/v1/pistes?populaireDebut=${start}&populaireFin=${end}`);
   map.getLayers().forEach(layer => {
     if (layer instanceof ol.layer.Vector) {
       layer.getSource().refresh();

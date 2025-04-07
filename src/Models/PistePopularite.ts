@@ -6,6 +6,7 @@ export interface IPistePopularite {
   totalPassages: number;
   dateDebut: Date;
   dateFin: Date;
+  NOM_ARR_VILLE_CODE: string;
 }
 
 export interface IPistePopulariteModel extends IPistePopularite, Document {}
@@ -17,6 +18,7 @@ const PistePopulariteSchema: Schema = new Schema(
     totalPassages: { type: Number, required: true },
     dateDebut: { type: Date, required: true },
     dateFin: { type: Date, required: true },
+    NOM_ARR_VILLE_CODE: { type: String, required: true },
   },
   {
     versionKey: false,

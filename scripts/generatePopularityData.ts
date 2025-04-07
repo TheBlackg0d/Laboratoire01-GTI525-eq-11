@@ -211,27 +211,35 @@ async function generatePopularityData() {
       totalPassages: number;
       dateDebut: Date;
       dateFin: Date;
+      NOM_ARR_VILLE_CODE: string;
     }[] = [];
 
     for (const [compteurId, monthlyData] of monthlyAggregates.entries()) {
-      // Skip compteurs not in our compteurToPistesMap
       if (!compteurToPistesMap.has(compteurId)) continue;
 
       const pistesForCompteur = compteurToPistesMap.get(compteurId) || [];
 
       for (const pisteId of pistesForCompteur) {
+        // Find the piste object to get its arrondissement
+        const piste = pistes.find(p => p.properties.ID_CYCL === parseInt(pisteId));
+        if (!piste) continue;
+
+        const arrondissement = piste.properties.NOM_ARR_VILLE_CODE || 'UNKNOWN';
+        if (arrondissement.trim() === '') continue; // Skip records with empty arrondissement
+
         for (const [yearMonth, totalPassages] of monthlyData.entries()) {
           const [year, month] = yearMonth.split('-').map(num => parseInt(num, 10));
 
           const dateDebut = new Date(year, month - 1, 1);
-          const dateFin = new Date(year, month, 0); // Last day of the month
+          const dateFin = new Date(year, month, 0);
 
           popularityData.push({
             pisteId,
             compteurId: parseInt(compteurId, 10),
             totalPassages,
             dateDebut,
-            dateFin
+            dateFin,
+            NOM_ARR_VILLE_CODE: arrondissement
           });
         }
       }

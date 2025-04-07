@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, Router } from "express";
 import PointInteretController from "../controllers/PointInteretController";
 import TerritoireController from "../controllers/TerritoireController";
+import PointInteret from "../Models/PointInteret";
 
 export class PointInteretRouter {
   private _router: Router;
@@ -22,7 +23,7 @@ export class PointInteretRouter {
 
       res.render("pointInteret", {
         title: "Point d'interet",
-        listFontaines: data,
+        listPointInterets: data,
         territoires,
       });
     } catch (err) {
@@ -30,12 +31,97 @@ export class PointInteretRouter {
     }
   }
 
-  public async getAllFontaine(req: Request, res: Response, next: NextFunction) {
+  public async ajouterInteret(req: Request, res: Response, next: NextFunction) {
     try {
-      const fontaine = await this.controllerPointInteret.getAllFontaine();
-      return res.status(200).json({ fontaine });
+      const data = await this.pointInteretController.getStatData();
+
+      const territoires = await this.territoireController.readAll();
+
+      res.render("ajouterInteret", {
+        title: "Point d'interet",
+        listPointInterets: data,
+        territoires,
+      });
+    } catch (err) {
+      console.log("Error in getting Compteurs stats: ", err);
+    }
+  }
+
+  public async getAllPointInteret(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const pointInteret =
+        await this.controllerPointInteret.getAllPointInteret();
+      return res.status(200).json({ pointInteret });
     } catch (error) {
       res.status(500).json({ error });
+    }
+  }
+
+  public async createPointInteret(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    const {
+      Adresse,
+      NomDuLieu,
+      arrondissementForm,
+      codePostale,
+      dispoDate,
+      typeDeLieu,
+      longitude,
+      lagitude,
+      Remarque,
+    } = req.body;
+    try {
+      const pointInteret = await this.controllerPointInteret.createPointInteret(
+        {
+          Intersection: Adresse,
+          Nom_parc_lieu: NomDuLieu,
+          Longitude: longitude,
+          Lagitude: lagitude,
+          type: typeDeLieu,
+          Arrondissement: arrondissementForm,
+          Remarque,
+        }
+      );
+      res.json({ message: "success", pointInteret });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  public async deletePointInteret(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const response = await this.controllerPointInteret.deletePointInteret(
+        req.params.id
+      );
+      res.json({ message: "success", del: response });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+
+  public async getPointInteret(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const result = await this.controllerPointInteret.getPointInteret(
+        req.params.id
+      );
+      res.status(200).json({ message: "seccess", result });
+    } catch (error) {
+      res.status(500).json({ message: error });
     }
   }
 
@@ -49,7 +135,11 @@ export class PointInteretRouter {
 
   init() {
     this._router.get("/", this.getStatData.bind(this));
-    this._router.get("/pointsdinteret", this.getAllFontaine.bind(this));
+    this._router.get("/ajouter", this.ajouterInteret.bind(this));
+    this._router.get("/pointsdinteret", this.getAllPointInteret.bind(this));
+    this._router.post("/create", this.createPointInteret.bind(this));
+    this._router.delete("/delete/:id", this.deletePointInteret.bind(this));
+    this._router.get("/:id", this.getPointInteret.bind(this));
   }
 }
 

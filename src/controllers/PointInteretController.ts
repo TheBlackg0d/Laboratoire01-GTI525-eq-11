@@ -1,19 +1,15 @@
 import { PointInteretInterface } from "../interfaces/PointInteret-interface";
-import Fontaines from "../Models/Fontaines";
+import PointInteret from "../Models/PointInteret";
 
 const papaparse = require("papaparse");
 
 export default class PointInteretController {
-  async getStatData(): Promise<PointInteretInterface[]> {
+  async getStatData() {
     try {
       // Fetch data
-      let response = await fetch("http://localhost:3000/data/fontaines.csv");
-      let csvData = await response.text();
+      let response = await this.getAllPointInteret();
 
-      return papaparse.parse(csvData, {
-        delimiter: ",",
-        header: true,
-      }).data;
+      return response;
     } catch (error) {
       console.error("Error fetching or parsing data:", error);
     }
@@ -21,7 +17,18 @@ export default class PointInteretController {
     return [];
   }
 
-  async getAllFontaine() {
-    return Fontaines.find();
+  async getAllPointInteret() {
+    return PointInteret.find();
+  }
+
+  async deletePointInteret(id: string) {
+    return PointInteret.findByIdAndDelete(id);
+  }
+
+  async createPointInteret(params: object) {
+    return PointInteret.create(params);
+  }
+  async getPointInteret(id: string) {
+    return PointInteret.findById(id);
   }
 }

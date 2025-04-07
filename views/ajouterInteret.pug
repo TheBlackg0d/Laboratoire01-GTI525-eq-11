@@ -1,0 +1,104 @@
+doctype html
+html
+    head
+        include ./commons/header.pug
+        link(rel="stylesheet" href="/stylesheets/ajouterInteret.css")
+        link(rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")
+        link(rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css")
+        style.
+            #map { z-index: 1; }
+            .leaflet-interactive { cursor: pointer; }
+            .selected-arrondissement {
+                fill: #FF0000 !important;
+                fill-opacity: 0.5 !important;
+            }
+    body
+        include ./commons/navbar.pug
+        main
+          .section1
+            h1.heading-point-interet Points d'intérêt
+            p.sub-heading-point-interet Le site propose beaucoup de lieu d'interet dans le grand montreal qui pourrait etre utile pour les amateurs de velo
+            h3.heading-point-interet-2 Territoires:
+            #map(style="height: 400px;").img-google-map
+            .map-point-interet
+                form(action="")
+                    .row.arrondissement-container
+                        .col-6
+                            label(for="arrondissement") Arrondissement
+                        .col-6
+                            select(name="arrondissement", id="arrondissement").form-select.select-1
+                                option(value="Tous") Tous
+                                each territoire in territoires
+                                  -var a = territoire
+                                  option(value=a.codeID) #{a.nom}  
+                    .row.lieu-container
+                        .col-6
+                            label(for="typeDeLieu") Type de lieu:
+                        .col-6
+                            select(name="typeDeLieu", id="TypeDeLieu").form-select.select-1
+                                option(value="Fontaine à boire") Fontaine à boire
+                                option(value="Atelier de réparation vélo") Atelier de réparation vélo
+          .section2
+            h1.heading-point-interet Ajout d'un nouveau points d'intérêt
+            hr.hr
+            form(action="" id="formPointInteret")
+              .row 
+                .col-md-12 
+                  <label for="NomDuLieu" class="form-label">Nom du lieu</label>
+                  <input type="text" class="form-control" id="NomDuLieu" name="NomDuLieu" placeholder="Fontaine à boire, atelier de réparation vélo" required>
+              .row 
+                <div class="col-md-9">
+                  <label for="Adresse" class="form-label">Adresse</label>
+                  <input type="text" class="form-control" id="Adresse"  name="Adresse" placeholder="1234 rue Montagne de L'erable, unte 321...." required>
+                </div>
+                
+                <div class="col-md-3">
+                  <label for="codePostale" class="form-label">Code Postal</label>
+                  <input type="text" class="form-control" id="codePostale" name="codePostale" placeholder="HJ0 3E1" required>
+                </div>
+              .row 
+                .col-md-8 
+                  <label for="arrondissementForm" class="form-label">Arrondissement</label>
+                  select(name="arrondissementForm", id="arrondissementForm" required).form-select.select-1
+                      <option value="" disabled selected>Choisissez l'arrondissement</option>
+                      each territoire in territoires
+                        -var a = territoire
+                        option(value=a.nom) #{a.nom} 
+                .col-md-4 
+                  label(for="dispoDate" class="form-label") Disponible depuis
+                  input(type="date" id="dispoDate", placeholder="Année d'implentation" name="dispoDate" class="form-control" required) 
+              .row 
+                <div class="col-md-6">
+                  <label for="TypeDeLieu" class="form-label">Type du lieu</label>
+                  select(name="typeDeLieu", id="TypeDeLieuForm" ).form-select.select-1
+                                option(value="Fontaine à boire" selected) Fontaine à boire
+                                option(value="Atelier de réparation vélo") Atelier de réparation vélo
+                </div>
+  
+                <div class="col-md-3" id="lagitudeContainer">
+                  <label for="latitude" class="form-label">Lagitude</label>
+                  <input type="text" class="form-control" id="latitude" name="lagitude" placeholder="45.5009">
+                </div>
+                <div class="col-md-3" id="longitudeContainer">
+                  <label for="longitude" class="form-label">Longitude</label>
+                  <input type="text" class="form-control" id="longitude" name="longitude" placeholder="-73.58781">
+                </div>
+              .row 
+                <div class="col-md-12">
+                  <label for="Remarque" class="form-label">Remarque</label>
+                  textArea(type="text" class="form-control" id="Remarque" name="Remarque" placeholder="Proche de plusieur restaurant")
+                </div>
+              hr
+              .button-form 
+                button.btn-annuler.btn.btn-danger Annuler 
+                button.btn-enregistrer.btn.btn-success#submitBtn Enregistrer
+
+
+        include ./commons/footer.pug
+script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
+script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js")
+script(src="/javascript/pointInteret.js") 
+script(src="/javascript/ajouterInteret.js") 
+
+   

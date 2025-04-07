@@ -12,6 +12,11 @@ const getPointInteret = async (id) => {
 
   return res.json();
 };
+const getPointInteretInArea = async (id) => {
+  const res = await fetch("pointInteret/allAreaPoints/" + id);
+  const json = await res.json();
+  return json;
+};
 const updatePointInteret = async (id) => {
   try {
     const form = document.querySelector("#formPointInteret");
@@ -219,6 +224,72 @@ $(function () {
               res.pointInteret.Intersection,
             ]; //Array, data here must match structure of table data
             dataTable.row(".selected").data(newData).draw();
+          }
+        });
+      }
+    });
+  function addPoint(latitude, longitude, map, special) {
+    // coordinates in tile space
+    var x = latitude;
+    var y = longitude;
+
+    try {
+      if (special) {
+        console.log("lol");
+        const icon = new L.Icon({
+          iconUrl:
+            "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+          shadowUrl:
+            "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41],
+        });
+        L.marker([x, y], { icon }).addTo(map);
+        map.flyTo([x, y], 11.5);
+      } else {
+        L.marker([x, y]).addTo(map);
+      }
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+  const myModalPoints = new bootstrap.Modal(
+    document.getElementById("ViewPointInteret")
+  );
+  let mapView;
+  $("#ViewPointInteret").on("hidden.bs.modal", function (e) {
+    console.log("hey");
+    mapView.off();
+    mapView.remove();
+  });
+  document
+    .querySelector("#showPoint")
+    .addEventListener("click", async function () {
+      const id = $(dataTable.row(".selected").node()).data("id");
+
+      if (id != undefined) {
+        mapView = L.map("mapModal").setView([45.5017, -73.5673], 10);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(mapView);
+
+        myModalPoints.show();
+        setTimeout(function () {
+          mapView.invalidateSize();
+        }, 100);
+
+        const res = await getPointInteretInArea(id);
+
+        res.result.forEach((points) => {
+          if (id == points._id) {
+            console.log(points);
+            addPoint(points.Latitude, points.Longitude, mapView, true);
+          } else {
+            addPoint(points.Latitude, points.Longitude, mapView, false);
           }
         });
       }

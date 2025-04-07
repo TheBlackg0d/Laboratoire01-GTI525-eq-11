@@ -165,6 +165,21 @@ export class PointInteretRouter {
       res.status(500).json({ error });
     }
   }
+
+  public async getAllPointsInArea(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const id = req.params.id;
+      const result = await this.controllerPointInteret.getAllPointsInArea(id);
+      console.log(result);
+      res.status(200).json({ message: "success", result });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
   get controllerPointInteret() {
     return this.pointInteretController;
   }
@@ -181,6 +196,7 @@ export class PointInteretRouter {
     this._router.delete("/delete/:id", this.deletePointInteret.bind(this));
     this._router.get("/:id", this.getPointInteret.bind(this));
     this._router.post("/update/:id", this.updatePointInteret.bind(this));
+    this._router.get("/allAreaPoints/:id", this.getAllPointsInArea.bind(this));
   }
 }
 

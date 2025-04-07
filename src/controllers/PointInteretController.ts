@@ -43,4 +43,16 @@ export default class PointInteretController {
       throw Error("Not Found");
     }
   }
+  async getAllPointsInArea(id: string) {
+    const pointInteret = await PointInteret.findById(id);
+    if (pointInteret) {
+      const pointInterets = await PointInteret.find({
+        Arrondissement: pointInteret.Arrondissement,
+      });
+
+      return pointInterets;
+    } else {
+      throw Error("Not Found");
+    }
+  }
 }

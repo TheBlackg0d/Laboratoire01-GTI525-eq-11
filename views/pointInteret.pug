@@ -68,6 +68,24 @@ html
                     td #{nomLieu}
                     td #{intersection}
       include ./commons/footer.pug
+      <div class="modal" tabindex="-1" id="ViewPointInteret">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal Edite</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             
+              #mapModal(style="height: 600px; width: 1000px").img-google-map
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                //- button(id='updatePointInteret' class="btn btn-primary") update
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="modal" tabindex="-1" id="EditModal">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -75,7 +93,7 @@ html
               <h5 class="modal-title">Modal Edite</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body body-charts">
+            <div class="modal-body">
               form(action="" id="formPointInteret")
                 .row 
                   .col-md-12 
@@ -131,6 +149,7 @@ html
           </div>
         </div>
       </div>
+      
 script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
 script(src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js")
 script(src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js")

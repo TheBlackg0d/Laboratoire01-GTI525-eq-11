@@ -14,22 +14,6 @@ export class PointInteretRouter {
     this.init();
   }
 
-  public async getStatData(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = await this.pointInteretController.getStatData();
-
-      const territoires = await this.territoireController.readAll();
-
-      res.render("pointInteret", {
-        title: "Point d'interet",
-        listFontaines: data,
-        territoires,
-      });
-    } catch (err) {
-      console.log("Error in getting Compteurs stats: ", err);
-    }
-  }
-
   public async getAllFontaine(req: Request, res: Response, next: NextFunction) {
     try {
       const fontaine = await this.controllerPointInteret.getAllFontaine();
@@ -89,7 +73,6 @@ export class PointInteretRouter {
   }
 
   init() {
-    this._router.get("/", this.getStatData.bind(this));
     this._router.get("/pointsdinteret", this.getFilteredFontaines.bind(this));
     this._router.get("/pointsdinteret/All", this.getAllFontaine.bind(this));
     this._router.get("/pointsdinteret/:id", this.getFontaineById.bind(this));

@@ -74,7 +74,7 @@ export class CompteurRouter {
 
   public init() {
     this._router.get("/compteurs", this.readAll.bind(this));
-    this._router.get("/compteurs/:id", this.readById.bind(this));
+    // this._router.get("/compteurs/:id", this.readById.bind(this));
     this._router.get(
       "/compteurs/:compteurId/passages",
       this.readByIdAndDate.bind(this)

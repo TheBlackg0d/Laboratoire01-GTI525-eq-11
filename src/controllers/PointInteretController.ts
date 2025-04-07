@@ -56,11 +56,11 @@ export default class PointInteretController {
     }
   }
 
-  async getFontaineById(id: number) {
-    return Fontaines.find({ ID: id });
+  async getPointInteretById(id: number) {
+    return PointInteret.find({ ID: id });
   }
 
-  async getFilteredFontaines(
+  async getFilteredPointInteret(
     limite: number,
     page: number,
     type: string,
@@ -69,18 +69,18 @@ export default class PointInteretController {
   ) {
     const filter: any = {};
     if (type) {
-      filter.type = type;
+      filter.type = { $regex: type };
     }
 
     if (nom) {
-      filter.Nom = { $regex: nom };
+      filter.Nom_parc_lieu = { $regex: nom };
     }
 
     if (territoire) {
-      filter.territoire = territoire;
+      filter.Arrondissement = territoire;
     }
 
-    return Fontaines.find(filter)
+    return PointInteret.find(filter)
       .limit(limite)
       .skip(page * limite);
   }

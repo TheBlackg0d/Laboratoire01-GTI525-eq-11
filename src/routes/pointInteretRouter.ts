@@ -180,6 +180,50 @@ export class PointInteretRouter {
       res.status(500).json({ error });
     }
   }
+
+  public async getFilteredPointInteret(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    console.log("hello");
+    const limit = req.query.limite as string;
+    const page = req.query.page as string;
+    const type = req.query.type as string;
+    const nom = req.query.nom as string;
+    const territoire = req.query.territoire as string;
+
+    try {
+      const pointInteret =
+        await this.controllerPointInteret.getFilteredPointInteret(
+          Number(limit),
+          Number(page),
+          type,
+          territoire,
+          nom
+        );
+      res.status(200).json({ pointInteret });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+
+  public async getPointInteretById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const id = req.params.id;
+      const fontaine = await this.controllerPointInteret.getPointInteretById(
+        Number(id)
+      );
+      return res.status(200).json({ fontaine });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+
   get controllerPointInteret() {
     return this.pointInteretController;
   }
@@ -189,14 +233,23 @@ export class PointInteretRouter {
   }
 
   init() {
-    this._router.get("/", this.getStatData.bind(this));
+    this._router.get("/stats", this.getStatData.bind(this));
     this._router.get("/ajouter", this.ajouterInteret.bind(this));
-    this._router.get("/pointsdinteret", this.getAllPointInteret.bind(this));
+    this._router.get("/pointsdinteret/All", this.getAllPointInteret.bind(this));
     this._router.post("/create", this.createPointInteret.bind(this));
     this._router.delete("/delete/:id", this.deletePointInteret.bind(this));
-    this._router.get("/:id", this.getPointInteret.bind(this));
+    // this._router.get("/:id", this.getPointInteret.bind(this));
     this._router.post("/update/:id", this.updatePointInteret.bind(this));
     this._router.get("/allAreaPoints/:id", this.getAllPointsInArea.bind(this));
+    this._router.get(
+      "/pointsdinteret",
+      this.getFilteredPointInteret.bind(this)
+    );
+
+    this._router.get(
+      "/pointsdinteret/:id",
+      this.getPointInteretById.bind(this)
+    );
   }
 }
 

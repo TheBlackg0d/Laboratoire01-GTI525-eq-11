@@ -25,7 +25,7 @@ export class CompteurController {
 
     return Compteur.find(filter)
       .limit(limit)
-      .skip(page * limit);
+      .skip((page - 1) * limit);
   }
 
   async readByCompteurIdAndGroupByDay(

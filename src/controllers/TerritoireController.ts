@@ -38,22 +38,17 @@ export default class TerritoireController {
     }
   }
 
-  async getGeoData(): Promise<string> {
-    // try {
-    //   // Fetch data
-    //   let response = await fetch(
-    //     "http://localhost:3000/data/territoires.geojson"
-    //   );
-    //   let geojson = await response.json();
-    //   return geojson;
-    // } catch (error) {
-    //   console.error("Error fetching or parsing data:", error);
-    // }
-
+  async getGeoData() {
     const territoires = await Territoire.find();
 
     const geojson = {
       type: "FeatureCollection",
+      crs: {
+        type: "name",
+        properties: {
+          name: "urn:ogc:def:crs:OGC:1.3:CRS84"
+        }
+      },
       features: territoires.map((territoire) => ({
         type: "Feature",
         properties: {
@@ -67,16 +62,10 @@ export default class TerritoireController {
           DATEMODIF: territoire.dateModif
         },
         geometry: territoire.geometry,
-      })),
-      crs: {
-        type: "name",
-        properties: {
-          name: "urn:ogc:def:crs:OGC:1.3:CRS84"
-        }
-      }
+      }))
     };
-    
-    return JSON.stringify(geojson);
+
+    return geojson;
   }
 
   async delete(territoireId: number) {

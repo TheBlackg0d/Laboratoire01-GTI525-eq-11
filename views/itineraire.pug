@@ -70,12 +70,11 @@ html
                     h3 Les voies les plus populaires
                     div.d-flex.flex-column
                         div
-                            label(for="debut") De:
-                            input(type="date" id="debut" name="debut"
-                                class="form-control")
+                            label(for="populaireDebut") De:
+                            input(type="date" id="populaireDebut" name="populaireDebut" class="form-control" onchange="updateMapWithDates()")
                         div
-                            label(for="fin") À:
-                            input(type="date" id="fin" name="fin"  class="form-control")
+                            label(for="populaireFin") À:
+                            input(type="date" id="populaireFin" name="populaireFin" class="form-control" onchange="updateMapWithDates()")
 
             .sectionDroite
                 .container-fluid
